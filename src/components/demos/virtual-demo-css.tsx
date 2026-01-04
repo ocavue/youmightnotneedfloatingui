@@ -69,7 +69,7 @@ export const VirtualDemoCSS = ({ debug = false }: { debug?: boolean }) => {
             debug ? "bg-amber-500" : ""
           )}
           style={{
-            anchorName
+            anchorName,
           }}
         ></div>
 
@@ -82,7 +82,7 @@ export const VirtualDemoCSS = ({ debug = false }: { debug?: boolean }) => {
           }}
         >
           <div
-            className="bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap transition-all"
+            className="bg-cyan-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap transition-all"
             style={{
               transform: isOpen ? "scale(1)" : "scale(0.8)",
               opacity: isOpen ? 1 : 0,
