@@ -1,1 +1,52 @@
 @import "tailwindcss";
+
+@layer utilities {
+  @keyframes size-demo-max-height {
+    from {
+      /* When the reference is flush with the bottom edge, the available space below is ~0. */
+      max-height: 0px;
+    }
+    to {
+      /* Clamp to the scrollport height (container query height).
+         8rem ≈ reference (6rem) + gap/offset/padding. Tweak if needed. */
+      max-height: max(0px, calc(100cqh - 8rem));
+    }
+  }
+
+  /* Scroll-driven animation demo:
+     - Define a view timeline on the reference element.
+     - Animate the dropdown's max-height based on that timeline.
+     This is intentionally "approximate" (progress-based), not geometric. */
+  .size-demo-sda-scope {
+    /* Expose the named timeline to siblings/descendants within this subtree. */
+    timeline-scope: --size-demo-ref;
+  }
+
+  .size-demo-sda-scroll {
+    /* Make `cqh` resolve to the scrollport size for descendants. */
+    container-type: size;
+  }
+
+  .size-demo-sda-ref {
+    view-timeline-name: --size-demo-ref;
+    view-timeline-axis: block;
+  }
+
+  .size-demo-sda-dropdown {
+    height: 18rem;
+    max-height: 18rem;
+    overflow: hidden;
+
+    animation-name: size-demo-max-height;
+    animation-duration: 1s; /* ignored when animation-timeline is active, but keeps a sane fallback */
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+
+    animation-timeline: --size-demo-ref;
+    /* Use the "contain" phase only:
+       - Before contain starts (reference is entering from bottom), stay at 0.
+       - During contain (fully visible), grow as it moves upward.
+       This matches the intuition: closer to bottom => less space below. */
+    animation-range: contain 0% exit 100%;
+  }
+}

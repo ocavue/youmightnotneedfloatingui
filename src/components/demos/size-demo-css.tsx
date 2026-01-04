@@ -1,78 +1,31 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
-import { computePosition, offset, size, autoUpdate } from "@floating-ui/dom";
+import React from "react";
 import { BrowserFrame } from "../browser-frame";
 
 export const SizeDemoCSS = () => {
-  const referenceRef = useRef<HTMLButtonElement>(null);
-  const floatingRef = useRef<HTMLDivElement>(null);
-  const [isPositioned, setIsPositioned] = useState(false);
-
-  useLayoutEffect(() => {
-    const reference = referenceRef.current;
-    const floating = floatingRef.current;
-    if (!reference || !floating) return;
-
-    return autoUpdate(reference, floating, () => {
-      computePosition(reference, floating, {
-        placement: "bottom",
-        middleware: [
-          offset(5),
-          size({
-            padding: 8,
-            rootBoundary: "document",
-            apply({ availableHeight, elements }) {
-              const nextMaxHeight = Math.max(0, availableHeight);
-              Object.assign(elements.floating.style, {
-                maxHeight: `${nextMaxHeight}px`,
-              });
-            },
-          }),
-        ],
-      }).then(({ x, y }) => {
-        Object.assign(floating.style, {
-          transform: `translate(${x}px, ${y}px)`,
-        });
-        setIsPositioned(true);
-      });
-    });
-  }, []);
-
   return (
-    <BrowserFrame 
+    <BrowserFrame
       label="Scroll the container"
-      scrollable="y" 
+      scrollable="none"
       className="h-80 bg-slate-100 dark:bg-slate-900"
     >
-      <div className="h-160 flex flex-col items-center justify-center relative">
-        <button
-          ref={referenceRef}
-          className="z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
-        >
-          Reference
-        </button>
+      {/* We define our own scroll container here so we can attach scroll/view timelines via CSS. */}
+      <div className="size-demo-sda-scroll h-full overflow-y-auto overflow-x-hidden">
+        <div className="h-80" />
 
-        <div
-          ref={floatingRef}
-          className="absolute top-0 left-0 z-20 w-32 pointer-events-none will-change-transform overflow-hidden rounded shadow-lg bg-cyan-600 text-white h-290"
-          style={{
-            maxHeight: 0,
-            opacity: isPositioned ? 1 : 0,
-            transition: "opacity 150ms ease-out",
-          }}
-        >
-          <div
-            className="grid h-full place-items-center text-sm font-bold"
-            style={{
-              transform: isPositioned ? "scale(1)" : "scale(0.95)",
-              transformOrigin: "top",
-              transition: "transform 150ms ease-out",
-            }}
-          >
-            Dropdown
+        <div className="size-demo-sda-scope flex flex-col items-center justify-center gap-5 py-10">
+          <button className="size-demo-sda-ref z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center">
+            Reference
+          </button>
+
+          <div className="size-demo-sda-dropdown w-40 rounded shadow-lg bg-rose-600 text-white">
+            <div className="grid h-full place-items-center text-sm font-bold">
+              Dropdown
+            </div>
           </div>
         </div>
+
+        <div className="h-80" />
       </div>
     </BrowserFrame>
   );
 };
-
