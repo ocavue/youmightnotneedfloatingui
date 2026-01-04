@@ -1,4 +1,5 @@
 ---
+import { BaselineStatus } from "astro-embed";
 import { DemosGrid } from "./demos-grid";
 ---
 
@@ -23,22 +24,24 @@ import { DemosGrid } from "./demos-grid";
       </a>
     </div>
     <p class="text-xl text-slate-600 dark:text-slate-400">
-      Learn the CSS Anchor Positioning API through side-by-side comparisons with
-      Floating UI. Each demo shows both a JavaScript implementation using <code
-        >@floating-ui/dom</code
-      > and a CSS-only solution.
+      Learn the <a
+        href="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-slate-700 dark:hover:text-slate-300 underline transition-colors"
+        >CSS Anchor Positioning</a
+      > API through side-by-side comparisons with
+      <a
+        href="https://floating-ui.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-slate-700 dark:hover:text-slate-300 underline transition-colors"
+        >Floating UI</a
+      >.
     </p>
   </header>
 
-  <div
-    class="p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg"
-  >
-    <p class="text-sm text-amber-900 dark:text-amber-100">
-      <strong>Browser Compatibility:</strong> CSS anchor positioning demos require
-      Chrome 125+ (some features need Chrome 143+ or 145+). Floating UI demos work
-      in all modern browsers.
-    </p>
-  </div>
+  <BaselineStatus id="anchor-positioning" />
 
   <DemosGrid client:load />
 
