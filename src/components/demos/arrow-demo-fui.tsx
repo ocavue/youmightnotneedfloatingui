@@ -8,7 +8,7 @@ import {
 } from "@floating-ui/dom";
 import { BrowserFrame } from "../browser-frame";
 
-export const ArrowDemo = () => {
+export const ArrowDemoFUI = () => {
   const referenceRef = useRef<HTMLButtonElement>(null);
   const floatingRef = useRef<HTMLDivElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);

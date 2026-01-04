@@ -1,14 +1,15 @@
 import React from "react";
-import { ArrowDemo } from "./demos/arrow-demo";
-import { FlipDemoFUI } from "./demos/flip-demo-fui";
+import { ArrowDemoCSS } from "./demos/arrow-demo-css";
+import { ArrowDemoFUI } from "./demos/arrow-demo-fui";
 import { FlipDemoCSS } from "./demos/flip-demo-css";
+import { FlipDemoFUI } from "./demos/flip-demo-fui";
 import { PlacementDemoCSS } from "./demos/placement-demo-css";
 import { PlacementDemoFUI } from "./demos/placement-demo-fui";
+import { ShiftDemoCSS } from "./demos/shift-demo-css";
 import { ShiftDemoFUI } from "./demos/shift-demo-fui";
 import { SizeDemoCSS } from "./demos/size-demo-css";
 import { SizeDemoFUI } from "./demos/size-demo-fui";
 import { VirtualDemo } from "./demos/virtual-demo";
-import { ShiftDemoCSS } from "./demos/shift-demo-css";
 
 function DemoPanel(props: {
   title: string;
@@ -103,7 +104,14 @@ export const DemosGrid = () => {
         title="Arrow"
         description="Dynamically positions an arrow element that is center-aware."
       >
-        <ArrowDemo />
+        <ArrowDemoFUI />
+      </DemoPanel>
+
+      <DemoPanel
+        title="Arrow"
+        description="Dynamically positions an arrow element that is center-aware."
+      >
+        <ArrowDemoCSS />
       </DemoPanel>
 
       <DemoPanel
