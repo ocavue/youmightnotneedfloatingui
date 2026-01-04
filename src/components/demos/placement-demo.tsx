@@ -7,6 +7,7 @@ import {
 } from "@floating-ui/dom";
 import { clsx } from "clsx";
 import { BrowserFrame } from "../browser-frame";
+import { DemoHeader } from "./demo-header";
 
 interface DotButtonProps {
   placement: Placement;
@@ -41,6 +42,7 @@ export const PlacementDemo = () => {
   const [placement, setPlacement] = useState<Placement>("top");
   const referenceRef = useRef<HTMLButtonElement>(null);
   const floatingRef = useRef<HTMLDivElement>(null);
+  const [isPositioned, setIsPositioned] = useState(false);
 
   useLayoutEffect(() => {
     const reference = referenceRef.current;
@@ -53,22 +55,19 @@ export const PlacementDemo = () => {
         middleware: [offset(5)],
       }).then(({ x, y }) => {
         Object.assign(floating.style, {
-          left: `${x}px`,
-          top: `${y}px`,
-          display: "block",
+          transform: `translate(${x}px, ${y}px)`,
         });
+        setIsPositioned(true);
       });
     });
   }, [placement]);
 
   return (
     <div className="flex flex-col gap-4">
-      <div>
-        <h3 className="text-xl font-bold">Placement</h3>
-        <p className="text-slate-600 dark:text-slate-400">
-          Places your floating element relative to another element.
-        </p>
-      </div>
+      <DemoHeader
+        title="Placement"
+        description="Places your floating element relative to another element."
+      />
 
       <BrowserFrame
         label="Click the dots"
@@ -155,7 +154,7 @@ export const PlacementDemo = () => {
 
           <button
             ref={referenceRef}
-            className="z-10 h-24 w-24 border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
+            className="z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
           >
             Reference
           </button>
@@ -163,20 +162,31 @@ export const PlacementDemo = () => {
           <div
             ref={floatingRef}
             className={clsx(
-              "absolute z-20 bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap pointer-events-none text-center",
+              "absolute top-0 left-0 z-20 pointer-events-none will-change-transform",
 
               ["top-start", "top-end", "bottom-start", "bottom-end"].includes(
                 placement
               ) && "w-36"
             )}
             style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              display: "none",
+              opacity: isPositioned ? 1 : 0,
+              transition: "opacity 150ms ease-out",
             }}
           >
-            {placement}
+            <div
+              className={clsx(
+                "bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap text-center",
+                ["top-start", "top-end", "bottom-start", "bottom-end"].includes(
+                  placement
+                ) && "w-36"
+              )}
+              style={{
+                transform: isPositioned ? "scale(1)" : "scale(0.9)",
+                transition: "transform 150ms ease-out",
+              }}
+            >
+              {placement}
+            </div>
           </div>
         </div>
       </BrowserFrame>

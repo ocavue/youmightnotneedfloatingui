@@ -1,61 +1,69 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { computePosition, offset, shift, type VirtualElement } from "@floating-ui/dom";
 import { BrowserFrame } from "../browser-frame";
+import { DemoHeader } from "./demo-header";
 
 export const VirtualDemo = () => {
   const floatingRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const latestPointRef = useRef<{ x: number; y: number } | null>(null);
+  const frameRef = useRef<number | null>(null);
 
-  const handleMouseMove = ({ clientX, clientY }: React.MouseEvent | React.PointerEvent) => {
-    const floating = floatingRef.current;
-    if (!floating) return;
+  const handleMouseMove = ({
+    clientX,
+    clientY,
+  }: React.MouseEvent | React.PointerEvent) => {
+    latestPointRef.current = { x: clientX, y: clientY };
 
-    const contextEl = containerRef.current;
-    if (!contextEl) return;
+    if (frameRef.current != null) return;
 
-    // Floating UI expects viewport-based rects (clientX/clientY). `contextElement`
-    // makes offsetParent/clipping/scroll resolution behave correctly.
-    const virtualElement: VirtualElement = {
-      getBoundingClientRect() {
-        return {
-          width: 0,
-          height: 0,
-          x: clientX,
-          y: clientY,
-          left: clientX,
-          top: clientY,
-          right: clientX,
-          bottom: clientY,
-        };
-      },
-      getClientRects() {
-        return [];
-      },
-      contextElement: contextEl,
-    };
+    frameRef.current = requestAnimationFrame(() => {
+      frameRef.current = null;
 
-    computePosition(virtualElement, floating, {
-      placement: "bottom-start",
-      middleware: [
-        offset(10),
-        shift({ padding: 5 }),
-      ],
-    }).then(({ x: floatingX, y: floatingY }) => {
-      Object.assign(floating.style, {
-        transform: `translate(${floatingX}px, ${floatingY}px)`,
+      const floating = floatingRef.current;
+      const contextEl = containerRef.current;
+      const point = latestPointRef.current;
+      if (!floating || !contextEl || !point) return;
+
+      // Floating UI expects viewport-based rects. `contextElement` ensures the
+      // correct offsetParent/clipping behavior for an in-frame tooltip.
+      const virtualElement: VirtualElement = {
+        getBoundingClientRect() {
+          return {
+            width: 0,
+            height: 0,
+            x: point.x,
+            y: point.y,
+            left: point.x,
+            top: point.y,
+            right: point.x,
+            bottom: point.y,
+          };
+        },
+        getClientRects() {
+          return [];
+        },
+        contextElement: contextEl,
+      };
+
+      computePosition(virtualElement, floating, {
+        placement: "bottom-start",
+        middleware: [offset(10), shift({ padding: 5 })],
+      }).then(({ x: floatingX, y: floatingY }) => {
+        Object.assign(floating.style, {
+          transform: `translate(${floatingX}px, ${floatingY}px)`,
+        });
       });
     });
   };
 
   return (
     <div className="flex flex-col gap-4">
-      <div>
-        <h3 className="text-xl font-bold">Virtual</h3>
-        <p className="text-slate-600 dark:text-slate-400">
-          Anchor relative to any coordinates, such as your mouse cursor.
-        </p>
-      </div>
+      <DemoHeader
+        title="Virtual"
+        description="Anchor relative to any coordinates, such as your mouse cursor."
+      />
 
       <BrowserFrame 
         label="Move your mouse"

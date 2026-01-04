@@ -1,7 +1,8 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { computePosition, offset, flip, autoUpdate } from "@floating-ui/dom";
 import { BrowserFrame } from "../browser-frame";
-import clsx from "clsx";
+import { clsx } from "clsx";
+import { DemoHeader } from "./demo-header";
 
 export const FlipDemo = () => {
   const referenceRef = useRef<HTMLButtonElement>(null);
@@ -19,33 +20,26 @@ export const FlipDemo = () => {
         middleware: [offset(5), flip()],
       }).then(({ x, y }) => {
         Object.assign(floating.style, {
-          left: `${x}px`,
-          top: `${y}px`,
+          transform: `translate(${x}px, ${y}px)`,
         });
-        floating.dataset.visible = "true";
+        setIsPositioned(true);
       });
     });
   }, []);
 
-  useEffect(() => {
-    setIsPositioned(true);
-  }, []);
-
   return (
     <div className="flex flex-col gap-4">
-      <div>
-        <h3 className="text-xl font-bold">Flip</h3>
-        <p className="text-slate-600 dark:text-slate-400">
-          Changes the placement of your floating element to keep it in view.
-        </p>
-      </div>
+      <DemoHeader
+        title="Flip"
+        description="Changes the placement of your floating element to keep it in view."
+      />
 
       <BrowserFrame
         label="Scroll down"
         scrollable="y"
         className="h-80 bg-slate-100 dark:bg-slate-900"
       >
-        <div className="h-[800px] flex flex-col items-center justify-center gap-[400px] relative">
+        <div className="h-160 flex flex-col items-center justify-center gap-[400px] relative">
           <p className="text-slate-500 italic">Scroll down to see flip</p>
 
           <button
@@ -58,12 +52,20 @@ export const FlipDemo = () => {
           <div
             ref={floatingRef}
             className={clsx(
-              "block absolute z-20 bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap pointer-events-none duration-0",
-              isPositioned ? "opacity-100" : "opacity-0",
-              isPositioned ? "transition-transform ease-out duration-300" : ""
+              "absolute top-0 left-0 z-20 pointer-events-none will-change-transform",
+              "transition-opacity duration-150 ease-out",
+              isPositioned ? "opacity-100" : "opacity-0"
             )}
           >
-            Tooltip
+            <div
+              className="bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap"
+              style={{
+                transform: isPositioned ? "scale(1)" : "scale(0.85)",
+                transition: "transform 150ms ease-out",
+              }}
+            >
+              Tooltip
+            </div>
           </div>
 
           <div className="h-[200px]" />
