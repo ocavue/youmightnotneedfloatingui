@@ -15,9 +15,10 @@ import { VirtualDemoFUI } from "./demos/virtual-demo-fui";
 function DemoPanel(props: {
   title: string;
   description: string;
+  warning?: string;
   children: React.ReactNode;
 }) {
-  const { title, description, children } = props;
+  const { title, description, warning, children } = props;
 
   return (
     <section
@@ -26,6 +27,11 @@ function DemoPanel(props: {
       <header>
         <h3 className="text-xl font-bold">{title}</h3>
         <p className="text-slate-600 dark:text-slate-400">{description}</p>
+        {warning && (
+          <p className="text-amber-500 text-sm font-semibold dark:text-amber-600">
+            {warning}
+          </p>
+        )}
       </header>
 
       <div>{children}</div>
@@ -69,6 +75,7 @@ export const DemosGrid = () => {
       <DemoPanel
         title="Shift"
         description="Shifts your floating element to keep it in view."
+        warning="Only works on Chrome Canary v145"
       >
         <ShiftDemoCSS />
       </DemoPanel>
@@ -83,6 +90,7 @@ export const DemosGrid = () => {
       <DemoPanel
         title="Flip"
         description="Changes the placement of your floating element to keep it in view."
+        warning="Only works on Chrome v143"
       >
         <FlipDemoCSS />
       </DemoPanel>
