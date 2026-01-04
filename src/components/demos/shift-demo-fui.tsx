@@ -2,7 +2,13 @@ import React, { useLayoutEffect, useRef, useState } from "react";
 import { computePosition, offset, shift, autoUpdate } from "@floating-ui/dom";
 import { BrowserFrame } from "../browser-frame";
 
-export const ShiftDemoFUI = () => {
+export const ShiftDemoFUI = ({
+  offsetValue = 5,
+  shiftPaddingValue = 5,
+}: {
+  offsetValue?: number;
+  shiftPaddingValue?: number;
+} = {}) => {
   const referenceRef = useRef<HTMLButtonElement>(null);
   const floatingRef = useRef<HTMLDivElement>(null);
   const boundaryRef = useRef<HTMLDivElement>(null);
@@ -17,9 +23,9 @@ export const ShiftDemoFUI = () => {
       computePosition(reference, floating, {
         placement: "right",
         middleware: [
-          offset(5),
+          offset(offsetValue),
           shift({
-            padding: 5,
+            padding: shiftPaddingValue,
             boundary: boundaryRef.current ?? undefined,
           }),
         ],
