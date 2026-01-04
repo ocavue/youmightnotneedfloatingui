@@ -3,9 +3,6 @@ import { computePosition, offset, flip, autoUpdate } from "@floating-ui/dom";
 import { BrowserFrame } from "../browser-frame";
 import { clsx } from "clsx";
 
-// TODO: This doesn't work. Maybe browser doesn't support it because of performance reasons.
-// See https://drafts.csswg.org/css-anchor-position-1/#scroll
-// For performance reasons, implementations usually perform scrolling on a separate scrolling/"compositing" thread, which has very limited capabilities (simple movement/transforms/etc., but no layout or similar expensive operations) and thus can be relied upon to respond to scrolling fast enough to be considered "instant" to human perception.
 export const FlipDemoCSS = ({ offsetValue = 5 }: { offsetValue?: number }) => {
   const referenceRef = useRef<HTMLButtonElement>(null);
   const floatingRef = useRef<HTMLDivElement>(null);
@@ -32,15 +29,14 @@ export const FlipDemoCSS = ({ offsetValue = 5 }: { offsetValue?: number }) => {
         <div
           ref={floatingRef}
           className={clsx(
-            "absolute top-0 left-0 z-20 pointer-events-none  ",
+            "absolute z-20 pointer-events-none  ",
             "transition-opacity duration-150 ease-out"
           )}
           style={{
-            
             positionAnchor: anchorName,
             positionArea: "top",
             bottom: offsetValue,
-            positionTryFallbacks: "bottom",
+            positionTryFallbacks: "flip-block",
             positionVisibility: "anchors-visible",
           }}
         >
