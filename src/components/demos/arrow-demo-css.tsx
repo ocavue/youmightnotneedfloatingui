@@ -45,7 +45,7 @@ export const ArrowDemoCSS = ({
         <div
           id="tooltip"
           className={clsx(
-            "absolute z-20 w-20 h-40 bg-cyan-600 text-white rounded shadow-lg text-sm font-bold flex items-center justify-center text-center leading-none",
+            "absolute z-20 w-20 h-40 bg-cyan-500 text-white rounded shadow-lg text-sm font-bold flex items-center justify-center text-center leading-none",
             debug ? "before:bg-amber-500" : "before:bg-inherit"
           )}
           style={{

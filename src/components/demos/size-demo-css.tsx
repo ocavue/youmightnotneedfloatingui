@@ -64,7 +64,7 @@ export const SizeDemoCSS = ({
         </button>
 
         <div
-          className="absolute z-20 w-32 pointer-events-none will-change-transform overflow-hidden rounded shadow-lg bg-cyan-600 text-white h-290"
+          className="absolute z-20 w-32 pointer-events-none will-change-transform overflow-hidden rounded shadow-lg bg-cyan-500 text-white h-290"
           style={{
             marginTop: offsetValue,
             positionAnchor: anchorName,

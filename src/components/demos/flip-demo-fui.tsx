@@ -49,7 +49,7 @@ export const FlipDemoFUI = ({ offsetValue = 5 }: { offsetValue?: number }) => {
           )}
         >
           <div
-            className="bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap"
+            className="bg-rose-500 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap"
             style={{
               transform: isPositioned ? "scale(1)" : "scale(0.85)",
               transition: "transform 150ms ease-out",

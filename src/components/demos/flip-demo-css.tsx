@@ -44,7 +44,7 @@ export const FlipDemoCSS = ({ offsetValue = 5 }: { offsetValue?: number }) => {
           }}
         >
           <div
-            className="bg-cyan-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap"
+            className="bg-cyan-500 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap"
             style={{
               transition: "transform 150ms ease-out",
             }}

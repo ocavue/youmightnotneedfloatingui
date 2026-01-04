@@ -88,7 +88,7 @@ export const ArrowDemoFUI = ({
           }}
         >
           <div
-            className="bg-rose-600 text-white w-24 h-48 rounded shadow-lg text-sm font-bold flex items-center justify-center"
+            className="bg-rose-500 text-white w-24 h-48 rounded shadow-lg text-sm font-bold flex items-center justify-center"
             style={{
               transform: isPositioned ? "scale(1)" : "scale(0.9)",
               transition: "transform 150ms ease-out",
@@ -97,7 +97,7 @@ export const ArrowDemoFUI = ({
             Popover
             <div
               ref={arrowRef}
-              className="absolute bg-rose-600 w-2 h-2 rotate-45 data-[hidden=true]:translate-x-2 transition-transform duration-300"
+              className="absolute bg-rose-500 w-2 h-2 rotate-45 data-[hidden=true]:translate-x-2 transition-transform duration-300"
             />
           </div>
         </div>

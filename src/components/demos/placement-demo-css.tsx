@@ -210,7 +210,7 @@ export const PlacementDemoCSS = ({
         >
           <div
             className={clsx(
-              "bg-cyan-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap text-center",
+              "bg-cyan-500 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap text-center",
               ["top-start", "top-end", "bottom-start", "bottom-end"].includes(
                 placement
               ) && "w-36"

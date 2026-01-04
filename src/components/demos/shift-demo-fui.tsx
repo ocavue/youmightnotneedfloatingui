@@ -61,7 +61,7 @@ export const ShiftDemoFUI = ({
           }}
         >
           <div
-            className="bg-rose-600 text-white rounded shadow-lg text-sm font-bold flex items-center justify-center w-20 h-40 text-center leading-none"
+            className="bg-rose-500 text-white rounded shadow-lg text-sm font-bold flex items-center justify-center w-20 h-40 text-center leading-none"
             style={{
               transition: "transform 150ms ease-out",
             }}

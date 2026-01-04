@@ -59,7 +59,7 @@ export const SizeDemoFUI = ({
 
         <div
           ref={floatingRef}
-          className="absolute top-0 left-0 z-20 w-32 pointer-events-none will-change-transform overflow-hidden rounded shadow-lg bg-rose-600 text-white h-290"
+          className="absolute top-0 left-0 z-20 w-32 pointer-events-none will-change-transform overflow-hidden rounded shadow-lg bg-rose-500 text-white h-290"
           style={{
             maxHeight: 0,
             opacity: isPositioned ? 1 : 0,
