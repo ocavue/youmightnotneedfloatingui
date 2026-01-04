@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowDemo } from "./demos/arrow-demo";
-import { FlipDemo } from "./demos/flip-demo";
+import { FlipDemoFUI } from "./demos/flip-demo-fui";
+import { FlipDemoCSS } from "./demos/flip-demo-css";
 import { PlacementDemoCSS } from "./demos/placement-demo-css";
 import { PlacementDemoFUI } from "./demos/placement-demo-fui";
 import { ShiftDemoFUI } from "./demos/shift-demo-fui";
@@ -73,7 +74,14 @@ export const DemosGrid = () => {
         title="Flip"
         description="Changes the placement of your floating element to keep it in view."
       >
-        <FlipDemo />
+        <FlipDemoFUI />
+      </DemoPanel>
+
+      <DemoPanel
+        title="Flip"
+        description="Changes the placement of your floating element to keep it in view."
+      >
+        <FlipDemoCSS />
       </DemoPanel>
 
       <DemoPanel

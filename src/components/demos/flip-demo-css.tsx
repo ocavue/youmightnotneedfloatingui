@@ -3,7 +3,7 @@ import { computePosition, offset, flip, autoUpdate } from "@floating-ui/dom";
 import { BrowserFrame } from "../browser-frame";
 import { clsx } from "clsx";
 
-export const FlipDemo = () => {
+export const FlipDemoCSS = () => {
   const referenceRef = useRef<HTMLButtonElement>(null);
   const floatingRef = useRef<HTMLDivElement>(null);
   const [isPositioned, setIsPositioned] = useState(false);
@@ -49,7 +49,7 @@ export const FlipDemo = () => {
           )}
         >
           <div
-            className="bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap"
+            className="bg-cyan-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap"
             style={{
               transform: isPositioned ? "scale(1)" : "scale(0.85)",
               transition: "transform 150ms ease-out",
