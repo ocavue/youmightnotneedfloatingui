@@ -1,16 +1,22 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
-import { computePosition, offset, shift } from "@floating-ui/dom";
+import { computePosition, offset, shift, type VirtualElement } from "@floating-ui/dom";
 import { BrowserFrame } from "../browser-frame";
 
 export const VirtualDemo = () => {
   const floatingRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleMouseMove = ({ clientX, clientY }: React.MouseEvent | React.PointerEvent) => {
     const floating = floatingRef.current;
     if (!floating) return;
 
-    const virtualElement = {
+    const contextEl = containerRef.current;
+    if (!contextEl) return;
+
+    // Floating UI expects viewport-based rects (clientX/clientY). `contextElement`
+    // makes offsetParent/clipping/scroll resolution behave correctly.
+    const virtualElement: VirtualElement = {
       getBoundingClientRect() {
         return {
           width: 0,
@@ -23,6 +29,10 @@ export const VirtualDemo = () => {
           bottom: clientY,
         };
       },
+      getClientRects() {
+        return [];
+      },
+      contextElement: contextEl,
     };
 
     computePosition(virtualElement, floating, {
@@ -31,10 +41,9 @@ export const VirtualDemo = () => {
         offset(10),
         shift({ padding: 5 }),
       ],
-    }).then(({ x, y }) => {
+    }).then(({ x: floatingX, y: floatingY }) => {
       Object.assign(floating.style, {
-        left: `${x}px`,
-        top: `${y}px`,
+        transform: `translate(${floatingX}px, ${floatingY}px)`,
       });
     });
   };
@@ -54,6 +63,7 @@ export const VirtualDemo = () => {
       >
         <div 
           className="w-full h-full relative"
+          ref={containerRef}
           onPointerMove={handleMouseMove}
           onPointerEnter={() => setIsOpen(true)}
           onPointerLeave={() => setIsOpen(false)}
@@ -64,17 +74,24 @@ export const VirtualDemo = () => {
           
           <div
             ref={floatingRef}
-            className="absolute z-20 bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold pointer-events-none transition-opacity duration-200"
+            className="absolute z-20 pointer-events-none"
             style={{
-              position: "fixed", // Using fixed for virtual cursor follow
+              position: "absolute",
               top: 0,
               left: 0,
               opacity: isOpen ? 1 : 0,
-              transform: isOpen ? 'scale(1)' : 'scale(0.5)',
-              transition: 'opacity 0.1s, transform 0.1s',
+              transition: "opacity 0.15s ease-out",
             }}
           >
-            Tooltip
+            <div 
+              className="bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap"
+              style={{
+                transform: isOpen ? "scale(1)" : "scale(0.8)",
+                transition: "transform 0.15s ease-out",
+              }}
+            >
+              Tooltip
+            </div>
           </div>
         </div>
       </BrowserFrame>
