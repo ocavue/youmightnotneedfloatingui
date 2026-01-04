@@ -6,6 +6,7 @@ import { PlacementDemoFUI } from "./demos/placement-demo-fui";
 import { ShiftDemoFUI } from "./demos/shift-demo-fui";
 import { SizeDemo } from "./demos/size-demo";
 import { VirtualDemo } from "./demos/virtual-demo";
+import { ShiftDemoCSS } from "./demos/shift-demo-css";
 
 function DemoPanel(props: {
   title: string;
@@ -59,6 +60,13 @@ export const DemosGrid = () => {
         description="Shifts your floating element to keep it in view."
       >
         <ShiftDemoFUI />
+      </DemoPanel>
+
+      <DemoPanel
+        title="Shift"
+        description="Shifts your floating element to keep it in view."
+      >
+        <ShiftDemoCSS />
       </DemoPanel>
 
       <DemoPanel

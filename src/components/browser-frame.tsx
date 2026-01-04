@@ -7,7 +7,7 @@ interface BrowserFrameProps {
   scrollable?: "both" | "x" | "y" | "none";
   className?: string;
   label?: string;
-  boundaryRef: React.Ref<HTMLDivElement>;
+  boundaryRef?: React.Ref<HTMLDivElement>;
 }
 
 export const BrowserFrame: React.FC<BrowserFrameProps> = ({

@@ -45,7 +45,6 @@ export const PlacementDemoCSS = ({
   const [placement, setPlacement] = useState<Placement>("top");
   const referenceRef = useRef<HTMLButtonElement>(null);
   const floatingRef = useRef<HTMLDivElement>(null);
-  const [isPositioned, setIsPositioned] = useState(false);
   const id = useId();
   const anchorName = `--anchor-${id}`;
 
