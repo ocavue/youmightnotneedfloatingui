@@ -58,7 +58,6 @@ export const ShiftDemoFUI = ({
           className="absolute top-0 left-0 z-20 w-20 h-40 pointer-events-none will-change-transform"
           style={{
             opacity: isPositioned ? 1 : 0,
-            transition: "opacity 150ms ease-out",
           }}
         >
           <div
