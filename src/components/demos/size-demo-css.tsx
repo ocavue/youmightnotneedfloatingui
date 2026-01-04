@@ -39,56 +39,50 @@ export const SizeDemoCSS = ({
   return (
     <BrowserFrame
       label="Scroll the container"
-      scrollable="none"
+      scrollable="y"
       className="h-80 bg-slate-100 dark:bg-slate-900"
+      boundaryStyle={{
+        "--size-max-height-from": `0px`,
+        "--size-max-height-to": `calc(100cqh - ${
+          sizePaddingValue + Math.max(sizePaddingValue, offsetValue)
+        }px)`,
+        timelineScope: viewTimelineName,
+        containerType: "size",
+      }}
     >
-      {/* We define our own scroll container here so we can attach scroll/view timelines via CSS. */}
-      <div
-        className="h-full overflow-y-auto overflow-x-hidden"
-        style={{
-          "--size-max-height-from": `0px`,
-          "--size-max-height-to": `calc(100cqh - ${
-            sizePaddingValue + Math.max(sizePaddingValue, offsetValue)
-          }px)`,
-          timelineScope: viewTimelineName,
-          containerType: "size",
-        }}
-      >
-        <div className="h-80" />
+      <div className="h-80" />
 
-        <div className="flex flex-col items-center justify-center py-10">
-          <button
-            className="z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
-            style={{
-              viewTimelineName: viewTimelineName,
-              viewTimelineAxis: "block",
-            }}
-          >
-            Reference
-          </button>
+      <div className="flex flex-col items-center justify-center py-10">
+        <button
+          className="z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
+          style={{
+            viewTimelineName: viewTimelineName,
+            viewTimelineAxis: "block",
+          }}
+        >
+          Reference
+        </button>
 
-          <div
-            className="size-demo-sda-dropdown w-40 rounded shadow-lg bg-cyan-600 text-white h-290"
-            style={{
-              marginTop: sizePaddingValue,
-              animationRangeStart: `contain ${
-                offsetValue + sizePaddingValue
-              }px`,
-              animationRangeEnd: `exit 100%`,
-              animationTimeline: viewTimelineName,
-              animationFillMode: "both",
-              animationDuration: "100ms",
-              animationTimingFunction: "linear",
-              animationName: "keyframe-max-height",
-            }}
-          >
-            <div className="grid h-full place-items-center text-sm font-bold">
-              Dropdown
-            </div>
+        <div
+          className="size-demo-sda-dropdown w-40 rounded shadow-lg bg-cyan-600 text-white h-290"
+          style={{
+            marginTop: sizePaddingValue,
+
+            // Start the animation when the dropdown is fully entered the viewport and there is `offsetValue + sizePaddingValue` of space below it.
+            animationRangeStart: `contain ${offsetValue + sizePaddingValue}px`,
+
+            // End the animation when the dropdown is fully exited the viewport.
+            animationRangeEnd: `exit 100%`,
+            animationTimeline: viewTimelineName,
+            animationFillMode: "both",
+            animationTimingFunction: "linear",
+            animationName: "keyframe-max-height",
+          }}
+        >
+          <div className="grid h-full place-items-center text-sm font-bold">
+            Dropdown
           </div>
         </div>
-
-        <div className="h-80" />
       </div>
     </BrowserFrame>
   );

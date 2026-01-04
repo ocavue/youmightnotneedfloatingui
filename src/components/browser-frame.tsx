@@ -8,6 +8,7 @@ interface BrowserFrameProps {
   className?: string;
   label?: string;
   boundaryRef?: React.Ref<HTMLDivElement>;
+  boundaryStyle?: React.CSSProperties;
 }
 
 export const BrowserFrame: React.FC<BrowserFrameProps> = ({
@@ -16,6 +17,7 @@ export const BrowserFrame: React.FC<BrowserFrameProps> = ({
   className = "",
   label,
   boundaryRef,
+  boundaryStyle,
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -69,6 +71,7 @@ export const BrowserFrame: React.FC<BrowserFrameProps> = ({
           scrollable === "x" && "overflow-x-auto overflow-y-hidden",
           scrollable === "y" && "overflow-y-auto overflow-x-hidden"
         )}
+        style={boundaryStyle}
       >
         {children}
       </div>
