@@ -1,0 +1,89 @@
+import React from "react";
+import { PlacementDemo } from "./demos/placement-demo";
+import { ShiftDemo } from "./demos/shift-demo";
+import { FlipDemo } from "./demos/flip-demo";
+import { SizeDemo } from "./demos/size-demo";
+import { ArrowDemo } from "./demos/arrow-demo";
+import { VirtualDemo } from "./demos/virtual-demo";
+
+function DemoPanel(props: {
+  title: string;
+  description: string;
+  children: React.ReactNode;
+}) {
+  const { title, description, children } = props;
+
+  return (
+    <section
+      className={[
+        "grid",
+        "grid-rows-subgrid",
+        "row-span-2",
+        "gap-4",
+      ].join(" ")}
+    >
+      <header>
+        <h3 className="text-xl font-bold">{title}</h3>
+        <p className="text-slate-600 dark:text-slate-400">{description}</p>
+      </header>
+
+      <div>{children}</div>
+    </section>
+  );
+}
+
+export const DemosGrid = () => {
+  return (
+    <div
+      className={[
+        "grid",
+        "grid-cols-1",
+        "md:grid-cols-2",
+        "gap-x-12",
+        "gap-y-12",
+        "auto-rows-[auto_auto]",
+      ].join(" ")}
+    >
+      <DemoPanel
+        title="Placement"
+        description="Places your floating element relative to another element."
+      >
+        <PlacementDemo />
+      </DemoPanel>
+
+      <DemoPanel title="Shift" description="Shifts your floating element to keep it in view.">
+        <ShiftDemo />
+      </DemoPanel>
+
+      <DemoPanel
+        title="Flip"
+        description="Changes the placement of your floating element to keep it in view."
+      >
+        <FlipDemo />
+      </DemoPanel>
+
+      <DemoPanel
+        title="Size"
+        description="Changes the size of your floating element to keep it in view."
+      >
+        <SizeDemo />
+      </DemoPanel>
+
+      <DemoPanel
+        title="Arrow"
+        description="Dynamically positions an arrow element that is center-aware."
+      >
+        <ArrowDemo />
+      </DemoPanel>
+
+      <DemoPanel
+        title="Virtual"
+        description="Anchor relative to any coordinates, such as your mouse cursor."
+      >
+        <VirtualDemo />
+      </DemoPanel>
+    </div>
+  );
+};
+
+

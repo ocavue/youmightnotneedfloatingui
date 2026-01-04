@@ -1,7 +1,6 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { computePosition, offset, shift, type VirtualElement } from "@floating-ui/dom";
 import { BrowserFrame } from "../browser-frame";
-import { DemoHeader } from "./demo-header";
 
 export const VirtualDemo = () => {
   const floatingRef = useRef<HTMLDivElement>(null);
@@ -59,51 +58,44 @@ export const VirtualDemo = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <DemoHeader
-        title="Virtual"
-        description="Anchor relative to any coordinates, such as your mouse cursor."
-      />
-
-      <BrowserFrame 
-        label="Move your mouse"
-        className="h-80 bg-slate-100 dark:bg-slate-900 overflow-hidden"
+    <BrowserFrame 
+      label="Move your mouse"
+      className="h-80 bg-slate-100 dark:bg-slate-900 overflow-hidden"
+    >
+      <div 
+        className="w-full h-full relative"
+        ref={containerRef}
+        onPointerMove={handleMouseMove}
+        onPointerEnter={() => setIsOpen(true)}
+        onPointerLeave={() => setIsOpen(false)}
       >
-        <div 
-          className="w-full h-full relative"
-          ref={containerRef}
-          onPointerMove={handleMouseMove}
-          onPointerEnter={() => setIsOpen(true)}
-          onPointerLeave={() => setIsOpen(false)}
+        <div className="flex items-center justify-center h-full text-slate-400 italic select-none">
+          Move your mouse in here
+        </div>
+        
+        <div
+          ref={floatingRef}
+          className="absolute z-20 pointer-events-none"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            opacity: isOpen ? 1 : 0,
+            transition: "opacity 0.15s ease-out",
+          }}
         >
-          <div className="flex items-center justify-center h-full text-slate-400 italic select-none">
-            Move your mouse in here
-          </div>
-          
-          <div
-            ref={floatingRef}
-            className="absolute z-20 pointer-events-none"
+          <div 
+            className="bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap"
             style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              opacity: isOpen ? 1 : 0,
-              transition: "opacity 0.15s ease-out",
+              transform: isOpen ? "scale(1)" : "scale(0.8)",
+              transition: "transform 0.15s ease-out",
             }}
           >
-            <div 
-              className="bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap"
-              style={{
-                transform: isOpen ? "scale(1)" : "scale(0.8)",
-                transition: "transform 0.15s ease-out",
-              }}
-            >
-              Tooltip
-            </div>
+            Tooltip
           </div>
         </div>
-      </BrowserFrame>
-    </div>
+      </div>
+    </BrowserFrame>
   );
 };
 

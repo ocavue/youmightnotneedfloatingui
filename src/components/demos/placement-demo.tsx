@@ -7,7 +7,6 @@ import {
 } from "@floating-ui/dom";
 import { clsx } from "clsx";
 import { BrowserFrame } from "../browser-frame";
-import { DemoHeader } from "./demo-header";
 
 interface DotButtonProps {
   placement: Placement;
@@ -63,133 +62,79 @@ export const PlacementDemo = () => {
   }, [placement]);
 
   return (
-    <div className="flex flex-col gap-4">
-      <DemoHeader
-        title="Placement"
-        description="Places your floating element relative to another element."
-      />
-
-      <BrowserFrame
-        label="Click the dots"
-        className="h-80 relative bg-slate-100 dark:bg-slate-900"
-      >
-        <div className="relative w-full h-full flex items-center justify-center p-20">
-          <div className="absolute inset-0 pointer-events-auto">
-            {/* Top dots */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 flex">
-              <DotButton
-                placement="top-start"
-                current={placement}
-                onClick={setPlacement}
-              />
-              <DotButton
-                placement="top"
-                current={placement}
-                onClick={setPlacement}
-              />
-              <DotButton
-                placement="top-end"
-                current={placement}
-                onClick={setPlacement}
-              />
-            </div>
-
-            {/* Bottom dots */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex">
-              <DotButton
-                placement="bottom-start"
-                current={placement}
-                onClick={setPlacement}
-              />
-              <DotButton
-                placement="bottom"
-                current={placement}
-                onClick={setPlacement}
-              />
-              <DotButton
-                placement="bottom-end"
-                current={placement}
-                onClick={setPlacement}
-              />
-            </div>
-
-            {/* Left dots */}
-            <div className="absolute left-4 top-1/2 -translate-y-1/2 flex flex-col">
-              <DotButton
-                placement="left-start"
-                current={placement}
-                onClick={setPlacement}
-              />
-              <DotButton
-                placement="left"
-                current={placement}
-                onClick={setPlacement}
-              />
-              <DotButton
-                placement="left-end"
-                current={placement}
-                onClick={setPlacement}
-              />
-            </div>
-
-            {/* Right dots */}
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col">
-              <DotButton
-                placement="right-start"
-                current={placement}
-                onClick={setPlacement}
-              />
-              <DotButton
-                placement="right"
-                current={placement}
-                onClick={setPlacement}
-              />
-              <DotButton
-                placement="right-end"
-                current={placement}
-                onClick={setPlacement}
-              />
-            </div>
+    <BrowserFrame
+      label="Click the dots"
+      className="h-80 relative bg-slate-100 dark:bg-slate-900"
+    >
+      <div className="relative w-full h-full flex items-center justify-center p-20">
+        <div className="absolute inset-0 pointer-events-auto">
+          {/* Top dots */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 flex">
+            <DotButton placement="top-start" current={placement} onClick={setPlacement} />
+            <DotButton placement="top" current={placement} onClick={setPlacement} />
+            <DotButton placement="top-end" current={placement} onClick={setPlacement} />
           </div>
 
-          <button
-            ref={referenceRef}
-            className="z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
-          >
-            Reference
-          </button>
+          {/* Bottom dots */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex">
+            <DotButton
+              placement="bottom-start"
+              current={placement}
+              onClick={setPlacement}
+            />
+            <DotButton placement="bottom" current={placement} onClick={setPlacement} />
+            <DotButton placement="bottom-end" current={placement} onClick={setPlacement} />
+          </div>
 
-          <div
-            ref={floatingRef}
-            className={clsx(
-              "absolute top-0 left-0 z-20 pointer-events-none will-change-transform",
+          {/* Left dots */}
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 flex flex-col">
+            <DotButton placement="left-start" current={placement} onClick={setPlacement} />
+            <DotButton placement="left" current={placement} onClick={setPlacement} />
+            <DotButton placement="left-end" current={placement} onClick={setPlacement} />
+          </div>
 
-              ["top-start", "top-end", "bottom-start", "bottom-end"].includes(
-                placement
-              ) && "w-36"
-            )}
-            style={{
-              opacity: isPositioned ? 1 : 0,
-              transition: "opacity 150ms ease-out",
-            }}
-          >
-            <div
-              className={clsx(
-                "bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap text-center",
-                ["top-start", "top-end", "bottom-start", "bottom-end"].includes(
-                  placement
-                ) && "w-36"
-              )}
-              style={{
-                transform: isPositioned ? "scale(1)" : "scale(0.9)",
-                transition: "transform 150ms ease-out",
-              }}
-            >
-              {placement}
-            </div>
+          {/* Right dots */}
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col">
+            <DotButton placement="right-start" current={placement} onClick={setPlacement} />
+            <DotButton placement="right" current={placement} onClick={setPlacement} />
+            <DotButton placement="right-end" current={placement} onClick={setPlacement} />
           </div>
         </div>
-      </BrowserFrame>
-    </div>
+
+        <button
+          ref={referenceRef}
+          className="z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
+        >
+          Reference
+        </button>
+
+        <div
+          ref={floatingRef}
+          className={clsx(
+            "absolute top-0 left-0 z-20 pointer-events-none will-change-transform",
+            ["top-start", "top-end", "bottom-start", "bottom-end"].includes(placement) &&
+              "w-36"
+          )}
+          style={{
+            opacity: isPositioned ? 1 : 0,
+            transition: "opacity 150ms ease-out",
+          }}
+        >
+          <div
+            className={clsx(
+              "bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap text-center",
+              ["top-start", "top-end", "bottom-start", "bottom-end"].includes(placement) &&
+                "w-36"
+            )}
+            style={{
+              transform: isPositioned ? "scale(1)" : "scale(0.9)",
+              transition: "transform 150ms ease-out",
+            }}
+          >
+            {placement}
+          </div>
+        </div>
+      </div>
+    </BrowserFrame>
   );
 };

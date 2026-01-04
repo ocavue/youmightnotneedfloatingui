@@ -1,10 +1,5 @@
 ---
-import { PlacementDemo } from "./demos/placement-demo";
-import { ShiftDemo } from "./demos/shift-demo";
-import { FlipDemo } from "./demos/flip-demo";
-import { SizeDemo } from "./demos/size-demo";
-import { ArrowDemo } from "./demos/arrow-demo";
-import { VirtualDemo } from "./demos/virtual-demo";
+import { DemosGrid } from "./demos-grid";
 ---
 
 <div class="max-w-4xl mx-auto p-8 space-y-16">
@@ -16,14 +11,7 @@ import { VirtualDemo } from "./demos/virtual-demo";
     </p>
   </header>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-    <PlacementDemo client:load />
-    <ShiftDemo client:load />
-    <FlipDemo client:load />
-    <SizeDemo client:load />
-    <ArrowDemo client:load />
-    <VirtualDemo client:load />
-  </div>
+  <DemosGrid client:load />
 
   <footer
     class="pt-16 border-t border-slate-200 dark:border-slate-800 text-center text-slate-500 text-sm"

@@ -1,7 +1,6 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { computePosition, offset, shift, arrow, autoUpdate } from "@floating-ui/dom";
 import { BrowserFrame } from "../browser-frame";
-import { DemoHeader } from "./demo-header";
 
 export const ArrowDemo = () => {
   const referenceRef = useRef<HTMLButtonElement>(null);
@@ -51,50 +50,43 @@ export const ArrowDemo = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-4">
-      <DemoHeader
-        title="Arrow"
-        description="Dynamically positions an arrow element that is center-aware."
-      />
+    <BrowserFrame 
+      label="Scroll the container"
+      scrollable="y" 
+      className="h-80 bg-slate-100 dark:bg-slate-900"
+    >
+      <div className="h-160 flex items-center justify-center relative">
+        <button
+          ref={referenceRef}
+          className="z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center ml-[-40%]"
+        >
+          Reference
+        </button>
 
-      <BrowserFrame 
-        label="Scroll the container"
-        scrollable="y" 
-        className="h-80 bg-slate-100 dark:bg-slate-900"
-      >
-        <div className="h-160 flex items-center justify-center relative">
-          <button
-            ref={referenceRef}
-            className="z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center ml-[-40%]"
-          >
-            Reference
-          </button>
-
+        <div
+          ref={floatingRef}
+          className="absolute top-0 left-0 z-20 w-24 h-48 pointer-events-none will-change-transform"
+          style={{
+            opacity: isPositioned ? 1 : 0,
+            transition: "opacity 150ms ease-out",
+          }}
+        >
           <div
-            ref={floatingRef}
-            className="absolute top-0 left-0 z-20 w-24 h-48 pointer-events-none will-change-transform"
+            className="bg-rose-600 text-white w-24 h-48 rounded shadow-lg text-sm font-bold flex items-center justify-center"
             style={{
-              opacity: isPositioned ? 1 : 0,
-              transition: "opacity 150ms ease-out",
+              transform: isPositioned ? "scale(1)" : "scale(0.9)",
+              transition: "transform 150ms ease-out",
             }}
           >
+            Popover
             <div
-              className="bg-rose-600 text-white w-24 h-48 rounded shadow-lg text-sm font-bold flex items-center justify-center"
-              style={{
-                transform: isPositioned ? "scale(1)" : "scale(0.9)",
-                transition: "transform 150ms ease-out",
-              }}
-            >
-              Popover
-              <div
-                ref={arrowRef}
-                className="absolute bg-rose-600 w-2 h-2 rotate-45"
-              />
-            </div>
+              ref={arrowRef}
+              className="absolute bg-rose-600 w-2 h-2 rotate-45"
+            />
           </div>
         </div>
-      </BrowserFrame>
-    </div>
+      </div>
+    </BrowserFrame>
   );
 };
 

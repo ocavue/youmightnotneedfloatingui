@@ -2,7 +2,6 @@ import React, { useLayoutEffect, useRef, useState } from "react";
 import { computePosition, offset, flip, autoUpdate } from "@floating-ui/dom";
 import { BrowserFrame } from "../browser-frame";
 import { clsx } from "clsx";
-import { DemoHeader } from "./demo-header";
 
 export const FlipDemo = () => {
   const referenceRef = useRef<HTMLButtonElement>(null);
@@ -28,49 +27,42 @@ export const FlipDemo = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-4">
-      <DemoHeader
-        title="Flip"
-        description="Changes the placement of your floating element to keep it in view."
-      />
+    <BrowserFrame
+      label="Scroll down"
+      scrollable="y"
+      className="h-80 bg-slate-100 dark:bg-slate-900"
+    >
+      <div className="h-160 flex flex-col items-center justify-center gap-[400px] relative">
+        <p className="text-slate-500 italic">Scroll down to see flip</p>
 
-      <BrowserFrame
-        label="Scroll down"
-        scrollable="y"
-        className="h-80 bg-slate-100 dark:bg-slate-900"
-      >
-        <div className="h-160 flex flex-col items-center justify-center gap-[400px] relative">
-          <p className="text-slate-500 italic">Scroll down to see flip</p>
+        <button
+          ref={referenceRef}
+          className="z-10 h-24 w-24 border-2 flex-none border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
+        >
+          Reference
+        </button>
 
-          <button
-            ref={referenceRef}
-            className="z-10 h-24 w-24 border-2 flex-none border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
-          >
-            Reference
-          </button>
-
+        <div
+          ref={floatingRef}
+          className={clsx(
+            "absolute top-0 left-0 z-20 pointer-events-none will-change-transform",
+            "transition-opacity duration-150 ease-out",
+            isPositioned ? "opacity-100" : "opacity-0"
+          )}
+        >
           <div
-            ref={floatingRef}
-            className={clsx(
-              "absolute top-0 left-0 z-20 pointer-events-none will-change-transform",
-              "transition-opacity duration-150 ease-out",
-              isPositioned ? "opacity-100" : "opacity-0"
-            )}
+            className="bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap"
+            style={{
+              transform: isPositioned ? "scale(1)" : "scale(0.85)",
+              transition: "transform 150ms ease-out",
+            }}
           >
-            <div
-              className="bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap"
-              style={{
-                transform: isPositioned ? "scale(1)" : "scale(0.85)",
-                transition: "transform 150ms ease-out",
-              }}
-            >
-              Tooltip
-            </div>
+            Tooltip
           </div>
-
-          <div className="h-[200px]" />
         </div>
-      </BrowserFrame>
-    </div>
+
+        <div className="h-[200px]" />
+      </div>
+    </BrowserFrame>
   );
 };
