@@ -1,14 +1,22 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
 import {
+  arrow,
+  autoUpdate,
   computePosition,
   offset,
   shift,
-  arrow,
-  autoUpdate,
 } from "@floating-ui/dom";
+import { useLayoutEffect, useRef, useState } from "react";
 import { BrowserFrame } from "../browser-frame";
 
-export const ArrowDemoFUI = () => {
+export const ArrowDemoFUI = ({
+  offsetValue = 16,
+  shiftPaddingValue = 5,
+  arrowPaddingValue = 5,
+}: {
+  offsetValue?: number;
+  shiftPaddingValue?: number;
+  arrowPaddingValue?: number;
+}) => {
   const referenceRef = useRef<HTMLButtonElement>(null);
   const floatingRef = useRef<HTMLDivElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);
@@ -24,9 +32,9 @@ export const ArrowDemoFUI = () => {
       computePosition(reference, floating, {
         placement: "right",
         middleware: [
-          offset(16),
-          shift({ padding: 5 }),
-          arrow({ element: arrowEl, padding: 5 }),
+          offset(offsetValue),
+          shift({ padding: shiftPaddingValue }),
+          arrow({ element: arrowEl, padding: arrowPaddingValue }),
         ],
       }).then(({ x, y, placement, middlewareData }) => {
         Object.assign(floating.style, {
