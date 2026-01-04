@@ -145,7 +145,7 @@ export const PlacementDemoCSS = ({
         <div
           ref={floatingRef}
           className={clsx(
-            "absolute top-0 left-0 z-20 pointer-events-none will-change-transform",
+            "absolute z-20 pointer-events-none will-change-transform",
             ["top-start", "top-end", "bottom-start", "bottom-end"].includes(
               placement
             ) && "w-36"
