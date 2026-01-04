@@ -1,32 +1,33 @@
 ---
-import { BrowserFrame } from "./browser-frame";
+import { PlacementDemo } from "./demos/placement-demo";
+import { ShiftDemo } from "./demos/shift-demo";
+import { FlipDemo } from "./demos/flip-demo";
+import { SizeDemo } from "./demos/size-demo";
+import { ArrowDemo } from "./demos/arrow-demo";
+import { VirtualDemo } from "./demos/virtual-demo";
 ---
 
-<div class="flex flex-col gap-8 p-8 max-w-4xl mx-auto">
-  <BrowserFrame title="Docs" client:load>
-    <div class="p-6">
-      <h1 class="text-2xl font-bold mb-4">Documentation</h1>
-      <p class="text-slate-600 dark:text-slate-400">
-        This is a browser frame with non-scrollable content.
-      </p>
-    </div>
-  </BrowserFrame>
+<div class="max-w-4xl mx-auto p-8 space-y-16">
+  <header class="space-y-4">
+    <h1 class="text-4xl font-extrabold tracking-tight">Floating UI Demos</h1>
+    <p class="text-xl text-slate-600 dark:text-slate-400">
+      Recreating Floating UI website demos using <code>@floating-ui/dom</code> and
+      React.
+    </p>
+  </header>
 
-  <BrowserFrame title="Playground" scrollable="y" className="h-64" client:load>
-    <div class="p-6">
-      <h1 class="text-2xl font-bold mb-4">Scrolling Example</h1>
-      <div class="space-y-4">
-        {
-          Array.from({ length: 10 }).map((_, i) => (
-            <p key={i} class="text-slate-600 dark:text-slate-400">
-              Line {i + 1}: Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit. Sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua.
-            </p>
-          ))
-        }
-      </div>
-    </div>
-  </BrowserFrame>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+    <PlacementDemo client:load />
+    <ShiftDemo client:load />
+    <FlipDemo client:load />
+    <SizeDemo client:load />
+    <ArrowDemo client:load />
+    <VirtualDemo client:load />
+  </div>
+
+  <footer
+    class="pt-16 border-t border-slate-200 dark:border-slate-800 text-center text-slate-500 text-sm"
+  >
+    Inspired by Floating UI documentation.
+  </footer>
 </div>
-
