@@ -1,4 +1,4 @@
-import React, { useId, useInsertionEffect } from "react";
+import { useId, useInsertionEffect } from "react";
 import { BrowserFrame } from "../browser-frame";
 
 declare module "react" {
@@ -17,6 +17,7 @@ export const SizeDemoCSS = ({
 }) => {
   const id = useId();
   const viewTimelineName = `--timeline-${id}`;
+  const anchorName = `--anchor-${id}`;
 
   useInsertionEffect(() => {
     const styleId = "keyframe-max-height-style";
@@ -50,23 +51,24 @@ export const SizeDemoCSS = ({
         containerType: "size",
       }}
     >
-      <div className="h-80" />
-
-      <div className="flex flex-col items-center justify-center py-10">
+      <div className="h-160 flex flex-col items-center justify-center py-10">
         <button
           className="z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
           style={{
             viewTimelineName: viewTimelineName,
             viewTimelineAxis: "block",
+            anchorName: anchorName,
           }}
         >
           Reference
         </button>
 
         <div
-          className="size-demo-sda-dropdown w-40 rounded shadow-lg bg-cyan-600 text-white h-290"
+          className="absolute z-20 w-32 pointer-events-none will-change-transform overflow-hidden rounded shadow-lg bg-cyan-600 text-white h-290"
           style={{
-            marginTop: sizePaddingValue,
+            marginTop: offsetValue,
+            positionAnchor: anchorName,
+            positionArea: "bottom",
 
             // Start the animation when the dropdown is fully entered the viewport and there is `offsetValue + sizePaddingValue` of space below it.
             animationRangeStart: `contain ${offsetValue + sizePaddingValue}px`,
