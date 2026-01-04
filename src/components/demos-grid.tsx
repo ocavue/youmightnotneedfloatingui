@@ -1,9 +1,10 @@
 import React from "react";
-import { PlacementDemo } from "./demos/placement-demo";
-import { ShiftDemo } from "./demos/shift-demo";
-import { FlipDemo } from "./demos/flip-demo";
-import { SizeDemo } from "./demos/size-demo";
 import { ArrowDemo } from "./demos/arrow-demo";
+import { FlipDemo } from "./demos/flip-demo";
+import { PlacementDemoCSS } from "./demos/placement-demo-css";
+import { PlacementDemoFUI } from "./demos/placement-demo-fui";
+import { ShiftDemo } from "./demos/shift-demo";
+import { SizeDemo } from "./demos/size-demo";
 import { VirtualDemo } from "./demos/virtual-demo";
 
 function DemoPanel(props: {
@@ -15,12 +16,7 @@ function DemoPanel(props: {
 
   return (
     <section
-      className={[
-        "grid",
-        "grid-rows-subgrid",
-        "row-span-2",
-        "gap-4",
-      ].join(" ")}
+      className={["grid", "grid-rows-subgrid", "row-span-2", "gap-4"].join(" ")}
     >
       <header>
         <h3 className="text-xl font-bold">{title}</h3>
@@ -48,10 +44,20 @@ export const DemosGrid = () => {
         title="Placement"
         description="Places your floating element relative to another element."
       >
-        <PlacementDemo />
+        <PlacementDemoFUI />
       </DemoPanel>
 
-      <DemoPanel title="Shift" description="Shifts your floating element to keep it in view.">
+      <DemoPanel
+        title="Placement"
+        description="Places your floating element relative to another element."
+      >
+        <PlacementDemoCSS />
+      </DemoPanel>
+
+      <DemoPanel
+        title="Shift"
+        description="Shifts your floating element to keep it in view."
+      >
         <ShiftDemo />
       </DemoPanel>
 
@@ -85,5 +91,3 @@ export const DemosGrid = () => {
     </div>
   );
 };
-
-

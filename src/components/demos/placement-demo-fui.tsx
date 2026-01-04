@@ -37,7 +37,11 @@ const DotButton = ({
   </button>
 );
 
-export const PlacementDemo = () => {
+export const PlacementDemoFUI = ({
+  offsetValue = 5,
+}: {
+  offsetValue?: number;
+} = {}) => {
   const [placement, setPlacement] = useState<Placement>("top");
   const referenceRef = useRef<HTMLButtonElement>(null);
   const floatingRef = useRef<HTMLDivElement>(null);
@@ -51,7 +55,7 @@ export const PlacementDemo = () => {
     return autoUpdate(reference, floating, () => {
       computePosition(reference, floating, {
         placement,
-        middleware: [offset(5)],
+        middleware: [offset(offsetValue)],
       }).then(({ x, y }) => {
         Object.assign(floating.style, {
           transform: `translate(${x}px, ${y}px)`,
@@ -59,7 +63,7 @@ export const PlacementDemo = () => {
         setIsPositioned(true);
       });
     });
-  }, [placement]);
+  }, [placement, offsetValue]);
 
   return (
     <BrowserFrame
@@ -70,9 +74,21 @@ export const PlacementDemo = () => {
         <div className="absolute inset-0 pointer-events-auto">
           {/* Top dots */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 flex">
-            <DotButton placement="top-start" current={placement} onClick={setPlacement} />
-            <DotButton placement="top" current={placement} onClick={setPlacement} />
-            <DotButton placement="top-end" current={placement} onClick={setPlacement} />
+            <DotButton
+              placement="top-start"
+              current={placement}
+              onClick={setPlacement}
+            />
+            <DotButton
+              placement="top"
+              current={placement}
+              onClick={setPlacement}
+            />
+            <DotButton
+              placement="top-end"
+              current={placement}
+              onClick={setPlacement}
+            />
           </div>
 
           {/* Bottom dots */}
@@ -82,22 +98,54 @@ export const PlacementDemo = () => {
               current={placement}
               onClick={setPlacement}
             />
-            <DotButton placement="bottom" current={placement} onClick={setPlacement} />
-            <DotButton placement="bottom-end" current={placement} onClick={setPlacement} />
+            <DotButton
+              placement="bottom"
+              current={placement}
+              onClick={setPlacement}
+            />
+            <DotButton
+              placement="bottom-end"
+              current={placement}
+              onClick={setPlacement}
+            />
           </div>
 
           {/* Left dots */}
           <div className="absolute left-4 top-1/2 -translate-y-1/2 flex flex-col">
-            <DotButton placement="left-start" current={placement} onClick={setPlacement} />
-            <DotButton placement="left" current={placement} onClick={setPlacement} />
-            <DotButton placement="left-end" current={placement} onClick={setPlacement} />
+            <DotButton
+              placement="left-start"
+              current={placement}
+              onClick={setPlacement}
+            />
+            <DotButton
+              placement="left"
+              current={placement}
+              onClick={setPlacement}
+            />
+            <DotButton
+              placement="left-end"
+              current={placement}
+              onClick={setPlacement}
+            />
           </div>
 
           {/* Right dots */}
           <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col">
-            <DotButton placement="right-start" current={placement} onClick={setPlacement} />
-            <DotButton placement="right" current={placement} onClick={setPlacement} />
-            <DotButton placement="right-end" current={placement} onClick={setPlacement} />
+            <DotButton
+              placement="right-start"
+              current={placement}
+              onClick={setPlacement}
+            />
+            <DotButton
+              placement="right"
+              current={placement}
+              onClick={setPlacement}
+            />
+            <DotButton
+              placement="right-end"
+              current={placement}
+              onClick={setPlacement}
+            />
           </div>
         </div>
 
@@ -112,8 +160,9 @@ export const PlacementDemo = () => {
           ref={floatingRef}
           className={clsx(
             "absolute top-0 left-0 z-20 pointer-events-none will-change-transform",
-            ["top-start", "top-end", "bottom-start", "bottom-end"].includes(placement) &&
-              "w-36"
+            ["top-start", "top-end", "bottom-start", "bottom-end"].includes(
+              placement
+            ) && "w-36"
           )}
           style={{
             opacity: isPositioned ? 1 : 0,
@@ -123,8 +172,9 @@ export const PlacementDemo = () => {
           <div
             className={clsx(
               "bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap text-center",
-              ["top-start", "top-end", "bottom-start", "bottom-end"].includes(placement) &&
-                "w-36"
+              ["top-start", "top-end", "bottom-start", "bottom-end"].includes(
+                placement
+              ) && "w-36"
             )}
             style={{
               transform: isPositioned ? "scale(1)" : "scale(0.9)",
