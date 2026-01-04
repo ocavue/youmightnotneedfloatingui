@@ -33,12 +33,15 @@ export const ShiftDemo = () => {
   }, []);
 
   return (
-    <BrowserFrame 
+    <BrowserFrame
       label="Scroll the container"
-      scrollable="y" 
+      scrollable="y"
       className="h-80 bg-slate-100 dark:bg-slate-900"
     >
-      <div ref={boundaryRef} className="h-160 flex items-center justify-center relative">
+      <div
+        ref={boundaryRef}
+        className="h-160 flex items-center justify-center relative"
+      >
         <button
           ref={referenceRef}
           className="z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
@@ -68,4 +71,3 @@ export const ShiftDemo = () => {
     </BrowserFrame>
   );
 };
-

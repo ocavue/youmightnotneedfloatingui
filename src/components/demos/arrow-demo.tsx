@@ -1,5 +1,11 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
-import { computePosition, offset, shift, arrow, autoUpdate } from "@floating-ui/dom";
+import {
+  computePosition,
+  offset,
+  shift,
+  arrow,
+  autoUpdate,
+} from "@floating-ui/dom";
 import { BrowserFrame } from "../browser-frame";
 
 export const ArrowDemo = () => {
@@ -20,7 +26,7 @@ export const ArrowDemo = () => {
         middleware: [
           offset(16),
           shift({ padding: 5 }),
-          arrow({ element: arrowEl }),
+          arrow({ element: arrowEl, padding: 5 }),
         ],
       }).then(({ x, y, placement, middlewareData }) => {
         Object.assign(floating.style, {
@@ -29,13 +35,15 @@ export const ArrowDemo = () => {
         setIsPositioned(true);
 
         if (middlewareData.arrow) {
-          const { x: arrowX, y: arrowY } = middlewareData.arrow;
+          const { x: arrowX, y: arrowY, centerOffset } = middlewareData.arrow;
           const staticSide = {
             top: "bottom",
             right: "left",
             bottom: "top",
             left: "right",
           }[placement.split("-")[0]]!;
+
+          arrowEl.dataset.hidden = centerOffset === 0 ? "false" : "true";
 
           Object.assign(arrowEl.style, {
             left: arrowX != null ? `${arrowX}px` : "",
@@ -50,15 +58,15 @@ export const ArrowDemo = () => {
   }, []);
 
   return (
-    <BrowserFrame 
+    <BrowserFrame
       label="Scroll the container"
-      scrollable="y" 
+      scrollable="y"
       className="h-80 bg-slate-100 dark:bg-slate-900"
     >
-      <div className="h-160 flex items-center justify-center relative">
+      <div className="h-160 flex flex-col items-center justify-center relative">
         <button
           ref={referenceRef}
-          className="z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center ml-[-40%]"
+          className="z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center -ml-16"
         >
           Reference
         </button>
@@ -81,7 +89,7 @@ export const ArrowDemo = () => {
             Popover
             <div
               ref={arrowRef}
-              className="absolute bg-rose-600 w-2 h-2 rotate-45"
+              className="absolute bg-rose-600 w-2 h-2 rotate-45 data-[hidden=true]:translate-x-2 transition-transform duration-300"
             />
           </div>
         </div>
@@ -89,4 +97,3 @@ export const ArrowDemo = () => {
     </BrowserFrame>
   );
 };
-

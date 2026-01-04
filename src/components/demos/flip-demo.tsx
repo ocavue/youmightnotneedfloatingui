@@ -32,9 +32,7 @@ export const FlipDemo = () => {
       scrollable="y"
       className="h-80 bg-slate-100 dark:bg-slate-900"
     >
-      <div className="h-160 flex flex-col items-center justify-center gap-[400px] relative">
-        <p className="text-slate-500 italic">Scroll down to see flip</p>
-
+      <div className="h-160 flex flex-col items-center justify-center relative">
         <button
           ref={referenceRef}
           className="z-10 h-24 w-24 border-2 flex-none border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
@@ -60,8 +58,6 @@ export const FlipDemo = () => {
             Tooltip
           </div>
         </div>
-
-        <div className="h-[200px]" />
       </div>
     </BrowserFrame>
   );

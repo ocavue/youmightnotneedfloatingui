@@ -18,9 +18,12 @@ export const SizeDemo = () => {
         middleware: [
           offset(5),
           size({
+            padding: 8,
+            rootBoundary: "document",
             apply({ availableHeight, elements }) {
+              const nextMaxHeight = Math.max(0, availableHeight);
               Object.assign(elements.floating.style, {
-                maxHeight: `${Math.max(0, availableHeight)}px`,
+                maxHeight: `${nextMaxHeight}px`,
               });
             },
           }),
@@ -40,7 +43,7 @@ export const SizeDemo = () => {
       scrollable="y" 
       className="h-80 bg-slate-100 dark:bg-slate-900"
     >
-      <div className="h-160 flex flex-col items-center pt-20 relative">
+      <div className="h-160 flex flex-col items-center justify-center relative">
         <button
           ref={referenceRef}
           className="z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
@@ -50,18 +53,18 @@ export const SizeDemo = () => {
 
         <div
           ref={floatingRef}
-          className="absolute top-0 left-0 z-20 w-48 pointer-events-none will-change-transform"
+          className="absolute top-0 left-0 z-20 w-32 pointer-events-none will-change-transform overflow-hidden rounded shadow-lg bg-rose-600 text-white h-290"
           style={{
-            height: "300px", // Target height
+            maxHeight: 0,
             opacity: isPositioned ? 1 : 0,
             transition: "opacity 150ms ease-out",
           }}
         >
           <div
-            className="bg-rose-600 text-white w-48 rounded shadow-lg text-sm font-bold overflow-hidden flex items-center justify-center"
+            className="grid h-full place-items-center text-sm font-bold"
             style={{
-              height: "300px",
-              transform: isPositioned ? "scale(1)" : "scale(0.9)",
+              transform: isPositioned ? "scale(1)" : "scale(0.95)",
+              transformOrigin: "top",
               transition: "transform 150ms ease-out",
             }}
           >
