@@ -16,10 +16,11 @@ function DemoPanel(props: {
   title: string;
   description: string;
   type: "Floating UI" | "CSS";
+  sourceUrl: string;
   warning?: string;
   children: React.ReactNode;
 }) {
-  const { title, description, type, warning, children } = props;
+  const { title, description, type, sourceUrl, warning, children } = props;
 
   return (
     <section
@@ -42,6 +43,15 @@ function DemoPanel(props: {
           >
             {type}
           </span>
+          <a
+            href={sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 transition-colors ml-auto"
+            title="View source code"
+          >
+            {"</>"}
+          </a>
         </div>
         <p className="text-slate-600 dark:text-slate-400">{description}</p>
         {warning && (
@@ -72,6 +82,7 @@ export const DemosGrid = () => {
         title="Placement"
         description="Places your floating element relative to another element."
         type="Floating UI"
+        sourceUrl="https://github.com/ocavue/youmightnotneedfloatingui/blob/master/src/components/demos/placement-demo-fui.tsx"
       >
         <PlacementDemoFUI />
       </DemoPanel>
@@ -80,6 +91,7 @@ export const DemosGrid = () => {
         title="Placement"
         description="Places your floating element relative to another element."
         type="CSS"
+        sourceUrl="https://github.com/ocavue/youmightnotneedfloatingui/blob/master/src/components/demos/placement-demo-css.tsx"
       >
         <PlacementDemoCSS />
       </DemoPanel>
@@ -88,6 +100,7 @@ export const DemosGrid = () => {
         title="Shift"
         description="Shifts your floating element to keep it in view."
         type="Floating UI"
+        sourceUrl="https://github.com/ocavue/youmightnotneedfloatingui/blob/master/src/components/demos/shift-demo-fui.tsx"
       >
         <ShiftDemoFUI />
       </DemoPanel>
@@ -96,6 +109,7 @@ export const DemosGrid = () => {
         title="Shift"
         description="Shifts your floating element to keep it in view."
         type="CSS"
+        sourceUrl="https://github.com/ocavue/youmightnotneedfloatingui/blob/master/src/components/demos/shift-demo-css.tsx"
         warning="Only works on Chrome Canary v145"
       >
         <ShiftDemoCSS />
@@ -105,6 +119,7 @@ export const DemosGrid = () => {
         title="Flip"
         description="Changes the placement of your floating element to keep it in view."
         type="Floating UI"
+        sourceUrl="https://github.com/ocavue/youmightnotneedfloatingui/blob/master/src/components/demos/flip-demo-fui.tsx"
       >
         <FlipDemoFUI />
       </DemoPanel>
@@ -113,6 +128,7 @@ export const DemosGrid = () => {
         title="Flip"
         description="Changes the placement of your floating element to keep it in view."
         type="CSS"
+        sourceUrl="https://github.com/ocavue/youmightnotneedfloatingui/blob/master/src/components/demos/flip-demo-css.tsx"
         warning="Only works on Chrome v143"
       >
         <FlipDemoCSS />
@@ -122,6 +138,7 @@ export const DemosGrid = () => {
         title="Size"
         description="Changes the size of your floating element to keep it in view."
         type="Floating UI"
+        sourceUrl="https://github.com/ocavue/youmightnotneedfloatingui/blob/master/src/components/demos/size-demo-fui.tsx"
       >
         <SizeDemoFUI />
       </DemoPanel>
@@ -130,6 +147,7 @@ export const DemosGrid = () => {
         title="Size"
         description="Changes the size of your floating element to keep it in view."
         type="CSS"
+        sourceUrl="https://github.com/ocavue/youmightnotneedfloatingui/blob/master/src/components/demos/size-demo-css.tsx"
         warning="Only works on Chrome Canary v145"
       >
         <SizeDemoCSS />
@@ -139,6 +157,7 @@ export const DemosGrid = () => {
         title="Arrow"
         description="Dynamically positions an arrow element that is center-aware."
         type="Floating UI"
+        sourceUrl="https://github.com/ocavue/youmightnotneedfloatingui/blob/master/src/components/demos/arrow-demo-fui.tsx"
       >
         <ArrowDemoFUI />
       </DemoPanel>
@@ -147,6 +166,7 @@ export const DemosGrid = () => {
         title="Arrow"
         description="Dynamically positions an arrow element that is center-aware."
         type="CSS"
+        sourceUrl="https://github.com/ocavue/youmightnotneedfloatingui/blob/master/src/components/demos/arrow-demo-css.tsx"
       >
         <ArrowDemoCSS />
       </DemoPanel>
@@ -155,6 +175,7 @@ export const DemosGrid = () => {
         title="Virtual"
         description="Anchor relative to any coordinates, such as your mouse cursor."
         type="Floating UI"
+        sourceUrl="https://github.com/ocavue/youmightnotneedfloatingui/blob/master/src/components/demos/virtual-demo-fui.tsx"
       >
         <VirtualDemoFUI />
       </DemoPanel>
@@ -163,6 +184,7 @@ export const DemosGrid = () => {
         title="Virtual"
         description="Anchor relative to any coordinates, such as your mouse cursor."
         type="CSS"
+        sourceUrl="https://github.com/ocavue/youmightnotneedfloatingui/blob/master/src/components/demos/virtual-demo-css.tsx"
         warning="Only works on Chrome Canary v145"
       >
         <VirtualDemoCSS />
