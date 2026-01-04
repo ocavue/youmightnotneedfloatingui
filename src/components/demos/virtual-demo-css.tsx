@@ -1,13 +1,22 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
-import { computePosition, offset, shift, type VirtualElement } from "@floating-ui/dom";
+import React, { useId, useLayoutEffect, useRef, useState } from "react";
+import {
+  computePosition,
+  offset,
+  shift,
+  type VirtualElement,
+} from "@floating-ui/dom";
 import { BrowserFrame } from "../browser-frame";
+import clsx from "clsx";
 
-export const VirtualDemoCSS = () => {
+export const VirtualDemoCSS = ({ debug = false }: { debug?: boolean }) => {
   const floatingRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const anchorRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const latestPointRef = useRef<{ x: number; y: number } | null>(null);
   const frameRef = useRef<number | null>(null);
+  const id = useId();
+  const anchorName = `--anchor-${id}`;
 
   const handleMouseMove = ({
     clientX,
@@ -21,48 +30,28 @@ export const VirtualDemoCSS = () => {
       frameRef.current = null;
 
       const floating = floatingRef.current;
-      const contextEl = containerRef.current;
       const point = latestPointRef.current;
-      if (!floating || !contextEl || !point) return;
+      const container = containerRef.current;
+      const anchor = anchorRef.current;
+      if (!floating || !point || !anchor || !container) return;
 
-      // Floating UI expects viewport-based rects. `contextElement` ensures the
-      // correct offsetParent/clipping behavior for an in-frame tooltip.
-      const virtualElement: VirtualElement = {
-        getBoundingClientRect() {
-          return {
-            width: 0,
-            height: 0,
-            x: point.x,
-            y: point.y,
-            left: point.x,
-            top: point.y,
-            right: point.x,
-            bottom: point.y,
-          };
-        },
-        getClientRects() {
-          return [];
-        },
-        contextElement: contextEl,
-      };
+      const containerRect = container.getBoundingClientRect();
 
-      computePosition(virtualElement, floating, {
-        placement: "bottom-start",
-        middleware: [offset(10), shift({ padding: 5 })],
-      }).then(({ x: floatingX, y: floatingY }) => {
-        Object.assign(floating.style, {
-          transform: `translate(${floatingX}px, ${floatingY}px)`,
-        });
+      const x = point.x - containerRect.left;
+      const y = point.y - containerRect.top;
+
+      Object.assign(anchor.style, {
+        transform: `translate(${x}px, ${y}px)`,
       });
     });
   };
 
   return (
-    <BrowserFrame 
+    <BrowserFrame
       label="Move your mouse"
       className="h-80 bg-slate-100 dark:bg-slate-900 overflow-hidden"
     >
-      <div 
+      <div
         className="w-full h-full relative"
         ref={containerRef}
         onPointerMove={handleMouseMove}
@@ -72,23 +61,31 @@ export const VirtualDemoCSS = () => {
         <div className="flex items-center justify-center h-full text-slate-400 italic select-none">
           Move your mouse in here
         </div>
-        
+
+        <div
+          ref={anchorRef}
+          className={clsx(
+            "absolute top-0 left-0 z-10 w-2 h-2 transform",
+            debug ? "bg-amber-500" : ""
+          )}
+          style={{
+            anchorName
+          }}
+        ></div>
+
         <div
           ref={floatingRef}
-          className="absolute z-20 pointer-events-none"
+          className="absolute z-20 pointer-events-none top-0 left-0"
           style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            opacity: isOpen ? 1 : 0,
-            transition: "opacity 0.15s ease-out",
+            positionAnchor: anchorName,
+            positionArea: "bottom span-right",
           }}
         >
-          <div 
-            className="bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap"
+          <div
+            className="bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap transition-all"
             style={{
               transform: isOpen ? "scale(1)" : "scale(0.8)",
-              transition: "transform 0.15s ease-out",
+              opacity: isOpen ? 1 : 0,
             }}
           >
             Tooltip
@@ -98,4 +95,3 @@ export const VirtualDemoCSS = () => {
     </BrowserFrame>
   );
 };
-

@@ -1,5 +1,10 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
-import { computePosition, offset, shift, type VirtualElement } from "@floating-ui/dom";
+import {
+  computePosition,
+  offset,
+  shift,
+  type VirtualElement,
+} from "@floating-ui/dom";
 import { BrowserFrame } from "../browser-frame";
 
 export const VirtualDemoFUI = () => {
@@ -58,11 +63,11 @@ export const VirtualDemoFUI = () => {
   };
 
   return (
-    <BrowserFrame 
+    <BrowserFrame
       label="Move your mouse"
       className="h-80 bg-slate-100 dark:bg-slate-900 overflow-hidden"
     >
-      <div 
+      <div
         className="w-full h-full relative"
         ref={containerRef}
         onPointerMove={handleMouseMove}
@@ -72,23 +77,21 @@ export const VirtualDemoFUI = () => {
         <div className="flex items-center justify-center h-full text-slate-400 italic select-none">
           Move your mouse in here
         </div>
-        
+
         <div
           ref={floatingRef}
-          className="absolute z-20 pointer-events-none"
+          className="absolute z-20 pointer-events-none transition-all duration-0"
           style={{
             position: "absolute",
             top: 0,
             left: 0,
-            opacity: isOpen ? 1 : 0,
-            transition: "opacity 0.15s ease-out",
           }}
         >
-          <div 
-            className="bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap"
+          <div
+            className="bg-rose-600 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap transition-all"
             style={{
               transform: isOpen ? "scale(1)" : "scale(0.8)",
-              transition: "transform 0.15s ease-out",
+              opacity: isOpen ? 1 : 0,
             }}
           >
             Tooltip
@@ -98,4 +101,3 @@ export const VirtualDemoFUI = () => {
     </BrowserFrame>
   );
 };
-
