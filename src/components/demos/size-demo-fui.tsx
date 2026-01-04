@@ -2,7 +2,13 @@ import React, { useLayoutEffect, useRef, useState } from "react";
 import { computePosition, offset, size, autoUpdate } from "@floating-ui/dom";
 import { BrowserFrame } from "../browser-frame";
 
-export const SizeDemoFUI = () => {
+export const SizeDemoFUI = ({
+  offsetValue = 5,
+  sizePaddingValue = 8,
+}: {
+  offsetValue?: number;
+  sizePaddingValue?: number;
+}) => {
   const referenceRef = useRef<HTMLButtonElement>(null);
   const floatingRef = useRef<HTMLDivElement>(null);
   const [isPositioned, setIsPositioned] = useState(false);
@@ -16,9 +22,9 @@ export const SizeDemoFUI = () => {
       computePosition(reference, floating, {
         placement: "bottom",
         middleware: [
-          offset(5),
+          offset(offsetValue),
           size({
-            padding: 8,
+            padding: sizePaddingValue,
             rootBoundary: "document",
             apply({ availableHeight, elements }) {
               const nextMaxHeight = Math.max(0, availableHeight);
@@ -38,9 +44,9 @@ export const SizeDemoFUI = () => {
   }, []);
 
   return (
-    <BrowserFrame 
+    <BrowserFrame
       label="Scroll the container"
-      scrollable="y" 
+      scrollable="y"
       className="h-80 bg-slate-100 dark:bg-slate-900"
     >
       <div className="h-160 flex flex-col items-center justify-center relative">
@@ -75,4 +81,3 @@ export const SizeDemoFUI = () => {
     </BrowserFrame>
   );
 };
-
