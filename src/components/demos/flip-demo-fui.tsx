@@ -3,7 +3,7 @@ import { computePosition, offset, flip, autoUpdate } from "@floating-ui/dom";
 import { BrowserFrame } from "../browser-frame";
 import { clsx } from "clsx";
 
-export const FlipDemoFUI = () => {
+export const FlipDemoFUI = ({ offsetValue = 5 }: { offsetValue?: number }) => {
   const referenceRef = useRef<HTMLButtonElement>(null);
   const floatingRef = useRef<HTMLDivElement>(null);
   const [isPositioned, setIsPositioned] = useState(false);
@@ -16,7 +16,7 @@ export const FlipDemoFUI = () => {
     return autoUpdate(reference, floating, () => {
       computePosition(reference, floating, {
         placement: "top",
-        middleware: [offset(5), flip()],
+        middleware: [offset(offsetValue), flip()],
       }).then(({ x, y }) => {
         Object.assign(floating.style, {
           transform: `translate(${x}px, ${y}px)`,
@@ -24,7 +24,7 @@ export const FlipDemoFUI = () => {
         setIsPositioned(true);
       });
     });
-  }, []);
+  }, [offsetValue]);
 
   return (
     <BrowserFrame
