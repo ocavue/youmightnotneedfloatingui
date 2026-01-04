@@ -2,20 +2,72 @@
 import { DemosGrid } from "./demos-grid";
 ---
 
-<div class="max-w-4xl mx-auto p-8 space-y-16">
-  <header class="space-y-4">
-    <h1 class="text-4xl font-extrabold tracking-tight">Floating UI Demos</h1>
+<div class="max-w-4xl mx-auto p-8 grid gap-10">
+  <header class="grid gap-10 mt-10">
+    <div class="flex items-start justify-between gap-4">
+      <h1 class="text-4xl font-extrabold tracking-tight">
+        You Might Not Need Floating UI
+        <span
+          class="text-2xl font-normal text-slate-400 dark:text-slate-500 ml-2 italic"
+        >
+          (soon)
+        </span>
+      </h1>
+      <a
+        href="https://github.com/ocavue/youmightnotneedfloatingui"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors whitespace-nowrap mt-1"
+      >
+        GitHub →
+      </a>
+    </div>
     <p class="text-xl text-slate-600 dark:text-slate-400">
-      Recreating Floating UI website demos using <code>@floating-ui/dom</code> and
-      React.
+      Learn the CSS Anchor Positioning API through side-by-side comparisons with
+      Floating UI. Each demo shows both a JavaScript implementation using <code
+        >@floating-ui/dom</code
+      > and a CSS-only solution.
     </p>
   </header>
+
+  <div
+    class="p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg"
+  >
+    <p class="text-sm text-amber-900 dark:text-amber-100">
+      <strong>Browser Compatibility:</strong> CSS anchor positioning demos require
+      Chrome 125+ (some features need Chrome 143+ or 145+). Floating UI demos work
+      in all modern browsers.
+    </p>
+  </div>
 
   <DemosGrid client:load />
 
   <footer
-    class="pt-16 border-t border-slate-200 dark:border-slate-800 text-center text-slate-500 text-sm"
+    class="mt-16 py-16 border-t border-slate-200 dark:border-slate-800 text-center text-slate-500 text-sm space-y-2"
   >
-    Inspired by Floating UI documentation.
+    <p>
+      All examples are inspired by the <a
+        href="https://floating-ui.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-slate-700 dark:hover:text-slate-300 underline transition-colors"
+        >Floating UI documentation</a
+      >.
+    </p>
+    <p>
+      Created by <a
+        href="https://github.com/ocavue"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-slate-700 dark:hover:text-slate-300 underline transition-colors"
+        >@ocavue</a
+      > · <a
+        href="https://github.com/ocavue/youmightnotneedfloatingui"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-slate-700 dark:hover:text-slate-300 underline transition-colors"
+        >View on GitHub</a
+      >
+    </p>
   </footer>
 </div>
