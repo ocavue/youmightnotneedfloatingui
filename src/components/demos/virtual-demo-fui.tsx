@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useRef, useState } from "react";
 import { computePosition, offset, shift, type VirtualElement } from "@floating-ui/dom";
 import { BrowserFrame } from "../browser-frame";
 
-export const VirtualDemo = () => {
+export const VirtualDemoFUI = () => {
   const floatingRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);

@@ -9,7 +9,8 @@ import { ShiftDemoCSS } from "./demos/shift-demo-css";
 import { ShiftDemoFUI } from "./demos/shift-demo-fui";
 import { SizeDemoCSS } from "./demos/size-demo-css";
 import { SizeDemoFUI } from "./demos/size-demo-fui";
-import { VirtualDemo } from "./demos/virtual-demo";
+import { VirtualDemoCSS } from "./demos/virtual-demo-css";
+import { VirtualDemoFUI } from "./demos/virtual-demo-fui";
 
 function DemoPanel(props: {
   title: string;
@@ -118,7 +119,14 @@ export const DemosGrid = () => {
         title="Virtual"
         description="Anchor relative to any coordinates, such as your mouse cursor."
       >
-        <VirtualDemo />
+        <VirtualDemoFUI />
+      </DemoPanel>
+
+      <DemoPanel
+        title="Virtual"
+        description="Anchor relative to any coordinates, such as your mouse cursor."
+      >
+        <VirtualDemoCSS />
       </DemoPanel>
     </div>
   );
