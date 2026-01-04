@@ -37,7 +37,7 @@ function DemoPanel(props: {
               "rounded",
               type === "Floating UI"
                 ? "bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300"
-                : "bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300",
+                : "bg-cyan-100 text-cyan-800 dark:bg-cyan-950 dark:text-cyan-300",
             ].join(" ")}
           >
             {type}
