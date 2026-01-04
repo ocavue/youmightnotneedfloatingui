@@ -5,7 +5,8 @@ import { FlipDemoCSS } from "./demos/flip-demo-css";
 import { PlacementDemoCSS } from "./demos/placement-demo-css";
 import { PlacementDemoFUI } from "./demos/placement-demo-fui";
 import { ShiftDemoFUI } from "./demos/shift-demo-fui";
-import { SizeDemo } from "./demos/size-demo";
+import { SizeDemoCSS } from "./demos/size-demo-css";
+import { SizeDemoFUI } from "./demos/size-demo-fui";
 import { VirtualDemo } from "./demos/virtual-demo";
 import { ShiftDemoCSS } from "./demos/shift-demo-css";
 
@@ -88,7 +89,14 @@ export const DemosGrid = () => {
         title="Size"
         description="Changes the size of your floating element to keep it in view."
       >
-        <SizeDemo />
+        <SizeDemoFUI />
+      </DemoPanel>
+
+      <DemoPanel
+        title="Size"
+        description="Changes the size of your floating element to keep it in view."
+      >
+        <SizeDemoCSS />
       </DemoPanel>
 
       <DemoPanel

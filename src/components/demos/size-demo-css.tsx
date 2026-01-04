@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useRef, useState } from "react";
 import { computePosition, offset, size, autoUpdate } from "@floating-ui/dom";
 import { BrowserFrame } from "../browser-frame";
 
-export const SizeDemo = () => {
+export const SizeDemoCSS = () => {
   const referenceRef = useRef<HTMLButtonElement>(null);
   const floatingRef = useRef<HTMLDivElement>(null);
   const [isPositioned, setIsPositioned] = useState(false);
@@ -53,7 +53,7 @@ export const SizeDemo = () => {
 
         <div
           ref={floatingRef}
-          className="absolute top-0 left-0 z-20 w-32 pointer-events-none will-change-transform overflow-hidden rounded shadow-lg bg-rose-600 text-white h-290"
+          className="absolute top-0 left-0 z-20 w-32 pointer-events-none will-change-transform overflow-hidden rounded shadow-lg bg-cyan-600 text-white h-290"
           style={{
             maxHeight: 0,
             opacity: isPositioned ? 1 : 0,
