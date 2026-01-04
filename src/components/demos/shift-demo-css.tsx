@@ -41,17 +41,14 @@ export const ShiftDemoCSS = ({
         ></div>
 
         <div
-          className="absolute z-20 w-20 h-40"
+          className="absolute z-20 w-20 h-40 bg-cyan-600 text-white rounded shadow-lg text-sm font-bold flex items-center justify-center text-center leading-none"
           style={{
-            transition: "opacity 150ms ease-out",
             positionAnchor: anchorName,
             positionArea: "right",
             marginLeft: offsetValue,
           }}
         >
-          <div className="bg-cyan-600 text-white rounded shadow-lg text-sm font-bold flex items-center justify-center w-20 h-40 text-center leading-none">
-            Popover
-          </div>
+          Popover
         </div>
       </div>
     </BrowserFrame>

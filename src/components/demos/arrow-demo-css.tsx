@@ -2,6 +2,13 @@ import clsx from "clsx";
 import { useId, useRef } from "react";
 import { BrowserFrame } from "../browser-frame";
 
+declare module "react" {
+  interface CSSProperties {
+    "--d"?: string;
+    "--s"?: string;
+  }
+}
+
 export const ArrowDemoCSS = ({
   debug = true,
   offsetValue = 16,
@@ -15,7 +22,8 @@ export const ArrowDemoCSS = ({
 }) => {
   const boundaryRef = useRef<HTMLDivElement>(null);
   const id = useId();
-  const anchorName = `--anchor-${id}`;
+  const anchorStickyName = `--anchor`;
+  const anchorTooltipName = `--tooltip`;
 
   return (
     <BrowserFrame
@@ -24,36 +32,58 @@ export const ArrowDemoCSS = ({
       scrollable="y"
       className="h-80 bg-slate-100 dark:bg-slate-900 relative"
     >
-      <div className="h-160 flex items-center justify-center ">
-        <button className="z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center relative">
+      <div className="h-160 flex items-center justify-center relative">
+        <button
+          className="absolute z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
+          style={{
+            anchorName: anchorStickyName,
+          }}
+        >
           <div>Reference</div>
         </button>
 
-        {/* An invisible sticky block for positioning. There might be a better way to do this. See also discussion in https://github.com/w3c/csswg-drafts/issues/12682#issuecomment-3660793867 */}
         <div
+          id="tooltip"
           className={clsx(
-            "sticky h-40 pointer-events-none",
-            debug ? "-ml-4 w-4 bg-amber-500" : "-ml-px w-px opacity-0"
+            "absolute z-20 w-20 h-40 bg-cyan-600 text-white rounded shadow-lg text-sm font-bold flex items-center justify-center text-center leading-none",
+            debug ? "before:bg-amber-500" : "before:bg-inherit"
           )}
           style={{
-            top: shiftPaddingValue,
-            bottom: shiftPaddingValue,
-            anchorName,
-          }}
-        ></div>
-
-        <div
-          className="absolute z-20 w-20 h-40"
-          style={{
-            transition: "opacity 150ms ease-out",
-            positionAnchor: anchorName,
+            "--d": "0.6em" /* distance between anchor and tooltip */,
+            "--s": "0.4em" /* tail size */,
+            positionAnchor: anchorStickyName,
             positionArea: "right",
-            marginLeft: offsetValue,
+
+            left: `${offsetValue}px`,
+            margin: "var(--d)",
+            marginLeft: "0",
+            positionTry:
+              "flip-inline, flip-start, flip-block, flip-start flip-inline",
           }}
         >
-          <div className="bg-cyan-600 text-white rounded shadow-lg text-sm font-bold flex items-center justify-center w-20 h-40 text-center leading-none">
-            Popover
-          </div>
+          Popover
+          <div
+            id="tooltip-before"
+            className="absolute -z-1 bg-inherit m-[inherit]"
+            style={{
+              inset: "calc(-1 * var(--d))",
+              // Taken from https://frontendmasters.com/blog/perfectly-pointed-tooltips-all-four-sides/
+              clipPath: `polygon(
+                calc(50% - var(--s)) var(--d),
+                50% 0.2em,
+                calc(50% + var(--s)) var(--d),
+                calc(100% - var(--d)) calc(50% - var(--s)),
+                calc(100% - 0.2em) 50%,
+                calc(100% - var(--d)) calc(50% + var(--s)),
+                calc(50% + var(--s)) calc(100% - var(--d)),
+                50% calc(100% - 0.2em),
+                calc(50% - var(--s)) calc(100% - var(--d)),
+                var(--d) calc(50% + var(--s)),
+                0.2em 50%,
+                var(--d) calc(50% - var(--s))
+            )`,
+            }}
+          ></div>
         </div>
       </div>
     </BrowserFrame>
