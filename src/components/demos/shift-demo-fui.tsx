@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useRef, useState } from "react";
 import { computePosition, offset, shift, autoUpdate } from "@floating-ui/dom";
 import { BrowserFrame } from "../browser-frame";
 
-export const ShiftDemo = () => {
+export const ShiftDemoFUI = () => {
   const referenceRef = useRef<HTMLButtonElement>(null);
   const floatingRef = useRef<HTMLDivElement>(null);
   const boundaryRef = useRef<HTMLDivElement>(null);
@@ -34,14 +34,12 @@ export const ShiftDemo = () => {
 
   return (
     <BrowserFrame
+      boundaryRef={boundaryRef}
       label="Scroll the container"
       scrollable="y"
       className="h-80 bg-slate-100 dark:bg-slate-900"
     >
-      <div
-        ref={boundaryRef}
-        className="h-160 flex items-center justify-center relative"
-      >
+      <div className="h-160 flex items-center justify-center relative">
         <button
           ref={referenceRef}
           className="z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
@@ -60,7 +58,6 @@ export const ShiftDemo = () => {
           <div
             className="bg-rose-600 text-white rounded shadow-lg text-sm font-bold flex items-center justify-center w-20 h-40 text-center leading-none"
             style={{
-              transform: isPositioned ? "scale(1)" : "scale(0.9)",
               transition: "transform 150ms ease-out",
             }}
           >

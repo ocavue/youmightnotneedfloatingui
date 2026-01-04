@@ -1,11 +1,13 @@
 import React, { useLayoutEffect, useRef } from "react";
 import { clsx } from "clsx";
+import { mergeRefs } from "react-merge-refs";
 
 interface BrowserFrameProps {
   children?: React.ReactNode;
   scrollable?: "both" | "x" | "y" | "none";
   className?: string;
   label?: string;
+  boundaryRef: React.Ref<HTMLDivElement>;
 }
 
 export const BrowserFrame: React.FC<BrowserFrameProps> = ({
@@ -13,6 +15,7 @@ export const BrowserFrame: React.FC<BrowserFrameProps> = ({
   scrollable = "none",
   className = "",
   label,
+  boundaryRef,
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -21,11 +24,13 @@ export const BrowserFrame: React.FC<BrowserFrameProps> = ({
     if (!container) return;
 
     if (scrollable === "y" || scrollable === "both") {
-      container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+      container.scrollTop =
+        (container.scrollHeight - container.clientHeight) / 2;
     }
 
     if (scrollable === "x" || scrollable === "both") {
-      container.scrollLeft = (container.scrollWidth - container.clientWidth) / 2;
+      container.scrollLeft =
+        (container.scrollWidth - container.clientWidth) / 2;
     }
   }, [scrollable]);
 
@@ -56,7 +61,7 @@ export const BrowserFrame: React.FC<BrowserFrameProps> = ({
 
       {/* Content Area */}
       <div
-        ref={scrollRef}
+        ref={mergeRefs([scrollRef, boundaryRef])}
         className={clsx(
           "flex-1 min-h-0 relative",
           scrollable === "none" && "overflow-hidden",

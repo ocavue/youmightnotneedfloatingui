@@ -3,7 +3,7 @@ import { ArrowDemo } from "./demos/arrow-demo";
 import { FlipDemo } from "./demos/flip-demo";
 import { PlacementDemoCSS } from "./demos/placement-demo-css";
 import { PlacementDemoFUI } from "./demos/placement-demo-fui";
-import { ShiftDemo } from "./demos/shift-demo";
+import { ShiftDemoFUI } from "./demos/shift-demo-fui";
 import { SizeDemo } from "./demos/size-demo";
 import { VirtualDemo } from "./demos/virtual-demo";
 
@@ -58,7 +58,7 @@ export const DemosGrid = () => {
         title="Shift"
         description="Shifts your floating element to keep it in view."
       >
-        <ShiftDemo />
+        <ShiftDemoFUI />
       </DemoPanel>
 
       <DemoPanel

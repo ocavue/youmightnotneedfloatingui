@@ -21,6 +21,7 @@
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
     "clsx": "^2.1.1",
+    "react-merge-refs": "^3.0.2",
     "tailwindcss": "^4.1.18"
   }
 }
