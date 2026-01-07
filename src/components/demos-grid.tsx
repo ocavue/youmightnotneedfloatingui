@@ -70,7 +70,7 @@ function DemoPanel(props: {
         </div>
         <p className="text-slate-600 dark:text-slate-400">{description}</p>
         {warning && (
-          <p className="text-amber-500 text-sm font-semibold dark:text-amber-600">
+          <p className="text-amber-500 text-sm font-semibold dark:text-amber-400">
             {warning}
           </p>
         )}
