@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme inline {
+  --font-sans: var(--font-inter);
+}
+
 a {
-    @apply underline underline-offset-3 hover:underline-offset-4 transition-all;
+  @apply underline underline-offset-3 hover:underline-offset-4 transition-all;
 }
