@@ -34,7 +34,7 @@ export function ArrowDemoCSS({
     >
       <div className="h-160 flex items-center justify-center relative">
         <button
-          className="absolute z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
+          className="absolute z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center -ml-16"
           style={{
             anchorName,
           }}
@@ -43,9 +43,8 @@ export function ArrowDemoCSS({
         </button>
 
         <div
-          id="tooltip"
           className={clsx(
-            "absolute z-20 w-20 h-40 bg-cyan-500 text-white rounded shadow-lg text-sm font-bold flex items-center justify-center text-center leading-none",
+            "absolute z-20 w-24 h-48 bg-cyan-500 text-white rounded shadow-lg text-sm font-bold flex items-center justify-center text-center leading-none",
             debug ? "before:bg-amber-500" : "before:bg-inherit",
           )}
           style={{
@@ -63,7 +62,6 @@ export function ArrowDemoCSS({
         >
           Popover
           <div
-            id="tooltip-before"
             className="absolute -z-1 bg-inherit m-[inherit]"
             style={{
               inset: "calc(-1 * var(--d))",
