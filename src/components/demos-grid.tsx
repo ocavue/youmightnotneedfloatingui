@@ -17,7 +17,7 @@ function DemoPanel(props: {
   description: string;
   type: "Floating UI" | "CSS";
   sourceUrl: string;
-  warning?: string;
+  warning?: string | React.ReactNode;
   children: React.ReactNode;
 }) {
   const { title, description, type, sourceUrl, warning, children } = props;
@@ -110,7 +110,7 @@ export const DemosGrid = () => {
         description="Shifts your floating element to keep it in view."
         type="CSS"
         sourceUrl="https://github.com/ocavue/youmightnotneedfloatingui/blob/master/src/components/demos/shift-demo-css.tsx"
-        warning="Only works on Chrome Canary v145"
+        warning="Require Chrome Canary v145"
       >
         <ShiftDemoCSS />
       </DemoPanel>
@@ -129,7 +129,18 @@ export const DemosGrid = () => {
         description="Changes the placement of your floating element to keep it in view."
         type="CSS"
         sourceUrl="https://github.com/ocavue/youmightnotneedfloatingui/blob/master/src/components/demos/flip-demo-css.tsx"
-        warning="Only works on Chrome v143"
+        warning=<span>
+          Only works on Chrome v143. A{" "}
+          <a
+            className="underline underline-offset-2 hover:underline-offset-4 transition-all"
+            href="https://github.com/w3c/csswg-drafts/issues/12607"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            CSSWG Proposal
+          </a>{" "}
+          is being worked on.
+        </span>
       >
         <FlipDemoCSS />
       </DemoPanel>
@@ -148,7 +159,7 @@ export const DemosGrid = () => {
         description="Changes the size of your floating element to keep it in view."
         type="CSS"
         sourceUrl="https://github.com/ocavue/youmightnotneedfloatingui/blob/master/src/components/demos/size-demo-css.tsx"
-        warning="Only works on Chrome Canary v145"
+        warning="Require Chrome Canary v145"
       >
         <SizeDemoCSS />
       </DemoPanel>
@@ -185,7 +196,7 @@ export const DemosGrid = () => {
         description="Anchor relative to any coordinates, such as your mouse cursor."
         type="CSS"
         sourceUrl="https://github.com/ocavue/youmightnotneedfloatingui/blob/master/src/components/demos/virtual-demo-css.tsx"
-        warning="Only works on Chrome Canary v145"
+        warning="Require Chrome Canary v145"
       >
         <VirtualDemoCSS />
       </DemoPanel>
