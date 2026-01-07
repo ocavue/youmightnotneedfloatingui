@@ -44,23 +44,23 @@ export function VirtualDemoCSS({ debug = false }: { debug?: boolean }) {
   return (
     <BrowserFrame
       label="Move your mouse"
-      className="h-80 bg-slate-100 dark:bg-slate-900 overflow-hidden"
+      className="h-80 overflow-hidden bg-slate-100 dark:bg-slate-900"
     >
       <div
-        className="w-full h-full relative"
+        className="relative h-full w-full"
         ref={containerRef}
         onPointerMove={handleMouseMove}
         onPointerEnter={() => setIsOpen(true)}
         onPointerLeave={() => setIsOpen(false)}
       >
-        <div className="flex items-center justify-center h-full text-slate-400 italic select-none">
+        <div className="flex h-full items-center justify-center text-slate-400 italic select-none">
           Move your mouse in here
         </div>
 
         <div
           ref={anchorRef}
           className={clsx(
-            "absolute top-0 left-0 z-10 w-2 h-2 transform",
+            "absolute top-0 left-0 z-10 h-2 w-2 transform",
             debug ? "bg-amber-500" : "",
           )}
           style={{
@@ -70,14 +70,14 @@ export function VirtualDemoCSS({ debug = false }: { debug?: boolean }) {
 
         <div
           ref={floatingRef}
-          className="absolute z-20 pointer-events-none top-0 left-0"
+          className="pointer-events-none absolute top-0 left-0 z-20"
           style={{
             positionAnchor: anchorName,
             positionArea: "bottom span-right",
           }}
         >
           <div
-            className="bg-cyan-500 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap transition-all"
+            className="rounded bg-cyan-500 px-3 py-1.5 text-sm font-bold whitespace-nowrap text-white shadow-lg transition-all"
             style={{
               transform: isOpen ? "scale(1)" : "scale(0.8)",
               opacity: isOpen ? 1 : 0,

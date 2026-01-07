@@ -33,10 +33,10 @@ export function FlipDemoFUI({ offsetValue = 5 }: { offsetValue?: number }) {
       scrollable="y"
       className="h-80 bg-slate-100 dark:bg-slate-900"
     >
-      <div className="h-160 flex flex-col items-center justify-center relative">
+      <div className="relative flex h-160 flex-col items-center justify-center">
         <button
           ref={referenceRef}
-          className="z-10 h-24 w-24 border-2 flex-none border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
+          className="z-10 flex h-24 w-24 flex-none items-center justify-center border-2 border-dashed border-slate-900 bg-slate-50 p-2 text-sm font-bold dark:border-slate-100 dark:bg-slate-800"
         >
           Reference
         </button>
@@ -44,13 +44,13 @@ export function FlipDemoFUI({ offsetValue = 5 }: { offsetValue?: number }) {
         <div
           ref={floatingRef}
           className={clsx(
-            "absolute top-0 left-0 z-20 pointer-events-none will-change-transform",
+            "pointer-events-none absolute top-0 left-0 z-20 will-change-transform",
             "transition-opacity duration-150 ease-out",
             isPositioned ? "opacity-100" : "opacity-0",
           )}
         >
           <div
-            className="bg-rose-500 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap"
+            className="rounded bg-rose-500 px-3 py-1.5 text-sm font-bold whitespace-nowrap text-white shadow-lg"
             style={{
               transform: isPositioned ? "scale(1)" : "scale(0.85)",
               transition: "transform 150ms ease-out",

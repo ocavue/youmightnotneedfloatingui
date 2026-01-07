@@ -52,9 +52,9 @@ export function SizeDemoCSS({
         containerType: "size",
       }}
     >
-      <div className="h-160 flex flex-col items-center justify-center py-10">
+      <div className="flex h-160 flex-col items-center justify-center py-10">
         <button
-          className="z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
+          className="z-10 flex h-24 w-24 flex-none items-center justify-center border-2 border-dashed border-slate-900 bg-slate-50 p-2 text-sm font-bold dark:border-slate-100 dark:bg-slate-800"
           style={{
             viewTimelineName: viewTimelineName,
             viewTimelineAxis: "block",
@@ -65,7 +65,7 @@ export function SizeDemoCSS({
         </button>
 
         <div
-          className="absolute z-20 w-32 pointer-events-none will-change-transform overflow-hidden rounded shadow-lg bg-cyan-500 text-white h-290"
+          className="pointer-events-none absolute z-20 h-290 w-32 overflow-hidden rounded bg-cyan-500 text-white shadow-lg will-change-transform"
           style={{
             marginTop: offsetValue,
             positionAnchor: anchorName,

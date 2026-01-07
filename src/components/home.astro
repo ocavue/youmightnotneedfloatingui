@@ -3,13 +3,13 @@ import { BaselineStatus } from "astro-embed"
 import { DemosGrid } from "./demos-grid"
 ---
 
-<div class="max-w-4xl mx-auto p-8 grid gap-10">
-  <header class="grid gap-10 mt-10">
+<div class="mx-auto grid max-w-4xl gap-10 p-8">
+  <header class="mt-10 grid gap-10">
     <div class="flex items-start justify-between gap-4">
       <h1 class="text-4xl font-extrabold tracking-tight">
         You Might Not Need Floating UI
         <span
-          class="text-2xl font-normal font-serif text-slate-400 dark:text-slate-500 ml-2"
+          class="ml-2 font-serif text-2xl font-normal text-slate-400 dark:text-slate-500"
         >
           (<span class="italic">soon</span>)
         </span>
@@ -18,7 +18,7 @@ import { DemosGrid } from "./demos-grid"
         href="https://github.com/ocavue/youmightnotneedfloatingui"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors whitespace-nowrap mt-1"
+        class="mt-1 text-sm font-medium whitespace-nowrap text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
       >
         GitHub →
       </a>
@@ -28,14 +28,14 @@ import { DemosGrid } from "./demos-grid"
         href="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning"
         target="_blank"
         rel="noopener noreferrer"
-        class="hover:text-slate-700 dark:hover:text-slate-300 underline transition-colors"
+        class="underline transition-colors hover:text-slate-700 dark:hover:text-slate-300"
         >CSS Anchor Positioning</a
       > API through side-by-side comparisons with
       <a
         href="https://floating-ui.com"
         target="_blank"
         rel="noopener noreferrer"
-        class="hover:text-slate-700 dark:hover:text-slate-300 underline transition-colors"
+        class="underline transition-colors hover:text-slate-700 dark:hover:text-slate-300"
         >Floating UI</a
       >.
     </p>
@@ -46,14 +46,14 @@ import { DemosGrid } from "./demos-grid"
   <DemosGrid client:load />
 
   <footer
-    class="mt-16 py-16 border-t border-slate-200 dark:border-slate-800 text-center text-slate-500 text-sm space-y-2"
+    class="mt-16 space-y-2 border-t border-slate-200 py-16 text-center text-sm text-slate-500 dark:border-slate-800"
   >
     <p>
       All examples are inspired by the <a
         href="https://floating-ui.com"
         target="_blank"
         rel="noopener noreferrer"
-        class="hover:text-slate-700 dark:hover:text-slate-300 underline transition-colors"
+        class="underline transition-colors hover:text-slate-700 dark:hover:text-slate-300"
         >Floating UI documentation</a
       >.
     </p>
@@ -62,13 +62,13 @@ import { DemosGrid } from "./demos-grid"
         href="https://github.com/ocavue"
         target="_blank"
         rel="noopener noreferrer"
-        class="hover:text-slate-700 dark:hover:text-slate-300 underline transition-colors"
+        class="underline transition-colors hover:text-slate-700 dark:hover:text-slate-300"
         >@ocavue</a
       > · <a
         href="https://github.com/ocavue/youmightnotneedfloatingui"
         target="_blank"
         rel="noopener noreferrer"
-        class="hover:text-slate-700 dark:hover:text-slate-300 underline transition-colors"
+        class="underline transition-colors hover:text-slate-700 dark:hover:text-slate-300"
         >View on GitHub</a
       >
     </p>

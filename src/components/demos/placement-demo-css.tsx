@@ -20,9 +20,9 @@ function DotButton({ placement, current, onClick, className }: DotButtonProps) {
     >
       <div
         className={clsx(
-          "w-4 h-4 rounded-full border-2",
+          "h-4 w-4 rounded-full border-2",
           current === placement
-            ? "bg-slate-800 border-slate-800 dark:bg-slate-200 dark:border-slate-200"
+            ? "border-slate-800 bg-slate-800 dark:border-slate-200 dark:bg-slate-200"
             : "border-slate-400",
         )}
       />
@@ -44,12 +44,12 @@ export function PlacementDemoCSS({
   return (
     <BrowserFrame
       label="Click the dots"
-      className="h-80 relative bg-slate-100 dark:bg-slate-900"
+      className="relative h-80 bg-slate-100 dark:bg-slate-900"
     >
-      <div className="relative w-full h-full flex items-center justify-center p-20">
-        <div className="absolute inset-0 pointer-events-auto">
+      <div className="relative flex h-full w-full items-center justify-center p-20">
+        <div className="pointer-events-auto absolute inset-0">
           {/* Top dots */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 flex">
+          <div className="absolute top-0 left-1/2 flex -translate-x-1/2">
             <DotButton
               placement="top-start"
               current={placement}
@@ -68,7 +68,7 @@ export function PlacementDemoCSS({
           </div>
 
           {/* Bottom dots */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex">
+          <div className="absolute bottom-0 left-1/2 flex -translate-x-1/2">
             <DotButton
               placement="bottom-start"
               current={placement}
@@ -87,7 +87,7 @@ export function PlacementDemoCSS({
           </div>
 
           {/* Left dots */}
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 flex flex-col">
+          <div className="absolute top-1/2 left-4 flex -translate-y-1/2 flex-col">
             <DotButton
               placement="left-start"
               current={placement}
@@ -106,7 +106,7 @@ export function PlacementDemoCSS({
           </div>
 
           {/* Right dots */}
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col">
+          <div className="absolute top-1/2 right-4 flex -translate-y-1/2 flex-col">
             <DotButton
               placement="right-start"
               current={placement}
@@ -127,7 +127,7 @@ export function PlacementDemoCSS({
 
         <button
           ref={referenceRef}
-          className="z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
+          className="z-10 flex h-24 w-24 flex-none items-center justify-center border-2 border-dashed border-slate-900 bg-slate-50 p-2 text-sm font-bold dark:border-slate-100 dark:bg-slate-800"
           style={{
             anchorName: anchorName,
           }}
@@ -138,7 +138,7 @@ export function PlacementDemoCSS({
         <div
           ref={floatingRef}
           className={clsx(
-            "absolute z-20 pointer-events-none will-change-transform",
+            "pointer-events-none absolute z-20 will-change-transform",
             ["top-start", "top-end", "bottom-start", "bottom-end"].includes(
               placement,
             ) && "w-36",
@@ -203,7 +203,7 @@ export function PlacementDemoCSS({
         >
           <div
             className={clsx(
-              "bg-cyan-500 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap text-center",
+              "rounded bg-cyan-500 px-3 py-1.5 text-center text-sm font-bold whitespace-nowrap text-white shadow-lg",
               ["top-start", "top-end", "bottom-start", "bottom-end"].includes(
                 placement,
               ) && "w-36",

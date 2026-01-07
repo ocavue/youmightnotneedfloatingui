@@ -43,7 +43,7 @@ function DemoPanel(props: {
       className={["grid", "grid-rows-subgrid", "row-span-2", "gap-4"].join(" ")}
     >
       <header>
-        <div className="flex items-center gap-2 mb-1">
+        <div className="mb-1 flex items-center gap-2">
           <h3 className="text-xl font-bold">{title}</h3>
           <span
             className={[
@@ -63,7 +63,7 @@ function DemoPanel(props: {
             href={sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 transition-colors ml-auto"
+            className="ml-auto text-xs text-slate-500 transition-colors hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300"
             title="View source code"
           >
             {"</>"}
@@ -71,7 +71,7 @@ function DemoPanel(props: {
         </div>
         <p className="text-slate-600 dark:text-slate-400">{description}</p>
         {warning && (
-          <p className="text-amber-500 text-sm font-semibold dark:text-amber-400">
+          <p className="text-sm font-semibold text-amber-500 dark:text-amber-400">
             {warning}
           </p>
         )}

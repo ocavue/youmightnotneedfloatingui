@@ -72,24 +72,24 @@ export function ArrowDemoFUI({
       scrollable="y"
       className="h-80 bg-slate-100 dark:bg-slate-900"
     >
-      <div className="h-160 flex flex-col items-center justify-center relative">
+      <div className="relative flex h-160 flex-col items-center justify-center">
         <button
           ref={referenceRef}
-          className="z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center -ml-16"
+          className="z-10 -ml-16 flex h-24 w-24 flex-none items-center justify-center border-2 border-dashed border-slate-900 bg-slate-50 p-2 text-sm font-bold dark:border-slate-100 dark:bg-slate-800"
         >
           Reference
         </button>
 
         <div
           ref={floatingRef}
-          className="absolute top-0 left-0 z-20 w-24 h-48 pointer-events-none will-change-transform"
+          className="pointer-events-none absolute top-0 left-0 z-20 h-48 w-24 will-change-transform"
           style={{
             opacity: isPositioned ? 1 : 0,
             transition: "opacity 150ms ease-out",
           }}
         >
           <div
-            className="bg-rose-500 text-white w-24 h-48 rounded shadow-lg text-sm font-bold flex items-center justify-center"
+            className="flex h-48 w-24 items-center justify-center rounded bg-rose-500 text-sm font-bold text-white shadow-lg"
             style={{
               transform: isPositioned ? "scale(1)" : "scale(0.9)",
               transition: "transform 150ms ease-out",
@@ -98,7 +98,7 @@ export function ArrowDemoFUI({
             Popover
             <div
               ref={arrowRef}
-              className="absolute bg-rose-500 w-2 h-2 rotate-45 data-[hidden=true]:translate-x-2 transition-transform duration-300"
+              className="absolute h-2 w-2 rotate-45 bg-rose-500 transition-transform duration-300 data-[hidden=true]:translate-x-2"
             />
           </div>
         </div>

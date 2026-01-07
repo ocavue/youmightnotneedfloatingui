@@ -21,17 +21,17 @@ export function ShiftDemoCSS({
       boundaryRef={boundaryRef}
       label="Scroll the container"
       scrollable="y"
-      className="h-80 bg-slate-100 dark:bg-slate-900 relative"
+      className="relative h-80 bg-slate-100 dark:bg-slate-900"
     >
-      <div className="h-160 flex items-center justify-center ">
-        <button className="z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center relative">
+      <div className="flex h-160 items-center justify-center">
+        <button className="relative z-10 flex h-24 w-24 flex-none items-center justify-center border-2 border-dashed border-slate-900 bg-slate-50 p-2 text-sm font-bold dark:border-slate-100 dark:bg-slate-800">
           <div>Reference</div>
         </button>
 
         {/* An invisible sticky block for positioning. There might be a better way to do this. See also discussion in https://github.com/w3c/csswg-drafts/issues/12682#issuecomment-3660793867 */}
         <div
           className={clsx(
-            "sticky h-40 pointer-events-none",
+            "pointer-events-none sticky h-40",
             debug ? "-ml-4 w-4 bg-amber-500" : "-ml-px w-px opacity-0",
           )}
           style={{
@@ -42,7 +42,7 @@ export function ShiftDemoCSS({
         ></div>
 
         <div
-          className="absolute z-20 w-20 h-40 bg-cyan-500 text-white rounded shadow-lg text-sm font-bold flex items-center justify-center text-center leading-none"
+          className="absolute z-20 flex h-40 w-20 items-center justify-center rounded bg-cyan-500 text-center text-sm leading-none font-bold text-white shadow-lg"
           style={{
             positionAnchor: anchorName,
             positionArea: "right",

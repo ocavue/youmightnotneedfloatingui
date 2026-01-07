@@ -16,12 +16,12 @@ export function FlipDemoCSS({ offsetValue = 5 }: { offsetValue?: number }) {
     <BrowserFrame
       label="Scroll down"
       scrollable="y"
-      className="h-80 bg-slate-100 dark:bg-slate-900 relative"
+      className="relative h-80 bg-slate-100 dark:bg-slate-900"
     >
-      <div className="h-160 flex flex-col items-center justify-center ">
+      <div className="flex h-160 flex-col items-center justify-center">
         <button
           ref={referenceRef}
-          className="z-10 h-24 w-24 border-2 flex-none border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
+          className="z-10 flex h-24 w-24 flex-none items-center justify-center border-2 border-dashed border-slate-900 bg-slate-50 p-2 text-sm font-bold dark:border-slate-100 dark:bg-slate-800"
           style={{
             anchorName,
           }}
@@ -32,7 +32,7 @@ export function FlipDemoCSS({ offsetValue = 5 }: { offsetValue?: number }) {
         <div
           ref={floatingRef}
           className={clsx(
-            "absolute z-20 pointer-events-none  ",
+            "pointer-events-none absolute z-20",
             "transition-opacity duration-150 ease-out",
           )}
           style={{
@@ -44,7 +44,7 @@ export function FlipDemoCSS({ offsetValue = 5 }: { offsetValue?: number }) {
           }}
         >
           <div
-            className="bg-cyan-500 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap"
+            className="rounded bg-cyan-500 px-3 py-1.5 text-sm font-bold whitespace-nowrap text-white shadow-lg"
             style={{
               transition: "transform 150ms ease-out",
             }}
