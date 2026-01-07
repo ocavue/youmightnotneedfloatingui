@@ -1,12 +1,12 @@
-import React, { useId, useLayoutEffect, useRef, useState } from "react"
-import { computePosition, offset, flip, autoUpdate } from "@floating-ui/dom"
-import { BrowserFrame } from "../browser-frame"
 import { clsx } from "clsx"
+import { useId, useRef } from "react"
+
+import { BrowserFrame } from "../browser-frame"
 
 // Works on Chrome 143.0.7499.170
 // Doesn't work on Chrome Canary 145.0.7615.0
 // Doesn't work on Safari Technology Preview Release 234 (WebKit 20624.1.6.19.3)
-export const FlipDemoCSS = ({ offsetValue = 5 }: { offsetValue?: number }) => {
+export function FlipDemoCSS({ offsetValue = 5 }: { offsetValue?: number }) {
   const referenceRef = useRef<HTMLButtonElement>(null)
   const floatingRef = useRef<HTMLDivElement>(null)
   const id = useId()

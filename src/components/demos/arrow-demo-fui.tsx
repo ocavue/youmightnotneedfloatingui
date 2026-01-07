@@ -6,9 +6,10 @@ import {
   shift,
 } from "@floating-ui/dom"
 import { useLayoutEffect, useRef, useState } from "react"
+
 import { BrowserFrame } from "../browser-frame"
 
-export const ArrowDemoFUI = ({
+export function ArrowDemoFUI({
   offsetValue = 16,
   shiftPaddingValue = 5,
   arrowPaddingValue = 5,
@@ -16,7 +17,7 @@ export const ArrowDemoFUI = ({
   offsetValue?: number
   shiftPaddingValue?: number
   arrowPaddingValue?: number
-}) => {
+}) {
   const referenceRef = useRef<HTMLButtonElement>(null)
   const floatingRef = useRef<HTMLDivElement>(null)
   const arrowRef = useRef<HTMLDivElement>(null)
@@ -29,7 +30,7 @@ export const ArrowDemoFUI = ({
     if (!reference || !floating || !arrowEl) return
 
     return autoUpdate(reference, floating, () => {
-      computePosition(reference, floating, {
+      void computePosition(reference, floating, {
         placement: "right",
         middleware: [
           offset(offsetValue),

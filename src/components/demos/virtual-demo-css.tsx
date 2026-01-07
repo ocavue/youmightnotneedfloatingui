@@ -1,14 +1,9 @@
-import React, { useId, useLayoutEffect, useRef, useState } from "react"
-import {
-  computePosition,
-  offset,
-  shift,
-  type VirtualElement,
-} from "@floating-ui/dom"
-import { BrowserFrame } from "../browser-frame"
 import clsx from "clsx"
+import React, { useId, useRef, useState } from "react"
 
-export const VirtualDemoCSS = ({ debug = false }: { debug?: boolean }) => {
+import { BrowserFrame } from "../browser-frame"
+
+export function VirtualDemoCSS({ debug = false }: { debug?: boolean }) {
   const floatingRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const anchorRef = useRef<HTMLDivElement>(null)

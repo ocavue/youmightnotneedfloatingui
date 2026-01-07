@@ -1,4 +1,5 @@
 import React from "react"
+
 import { ArrowDemoCSS } from "./demos/arrow-demo-css"
 import { ArrowDemoFUI } from "./demos/arrow-demo-fui"
 import { FlipDemoCSS } from "./demos/flip-demo-css"
@@ -12,7 +13,7 @@ import { SizeDemoFUI } from "./demos/size-demo-fui"
 import { VirtualDemoCSS } from "./demos/virtual-demo-css"
 import { VirtualDemoFUI } from "./demos/virtual-demo-fui"
 
-const ChromeCanaryWarning = () => {
+function ChromeCanaryWarning() {
   return (
     <span>
       Require{" "}
@@ -81,7 +82,7 @@ function DemoPanel(props: {
   )
 }
 
-export const DemosGrid = () => {
+export function DemosGrid() {
   return (
     <div
       className={[

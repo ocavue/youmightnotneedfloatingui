@@ -1,5 +1,6 @@
 import clsx from "clsx"
 import { useId, useRef } from "react"
+
 import { BrowserFrame } from "../browser-frame"
 
 declare module "react" {
@@ -9,21 +10,20 @@ declare module "react" {
   }
 }
 
-export const ArrowDemoCSS = ({
+export function ArrowDemoCSS({
   debug = true,
   offsetValue = 16,
-  shiftPaddingValue = 5,
-  arrowPaddingValue = 5,
 }: {
   debug?: boolean
   offsetValue?: number
+  // TODO: shiftPaddingValue is not used yet because the popover doesn't shift.
   shiftPaddingValue?: number
+  // TODO: arrowPaddingValue is not used yet because the arrow doesn't move against the popover.
   arrowPaddingValue?: number
-}) => {
+}) {
   const boundaryRef = useRef<HTMLDivElement>(null)
   const id = useId()
-  const anchorStickyName = `--anchor`
-  const anchorTooltipName = `--tooltip`
+  const anchorName = `--anchor-${id}`
 
   return (
     <BrowserFrame
@@ -36,7 +36,7 @@ export const ArrowDemoCSS = ({
         <button
           className="absolute z-10 h-24 w-24 flex-none border-2 border-dashed border-slate-900 dark:border-slate-100 bg-slate-50 dark:bg-slate-800 p-2 text-sm font-bold flex items-center justify-center"
           style={{
-            anchorName: anchorStickyName,
+            anchorName,
           }}
         >
           <div>Reference</div>
@@ -51,7 +51,7 @@ export const ArrowDemoCSS = ({
           style={{
             "--d": "0.6em" /* distance between anchor and tooltip */,
             "--s": "0.4em" /* tail size */,
-            positionAnchor: anchorStickyName,
+            positionAnchor: anchorName,
             positionArea: "right",
 
             left: `${offsetValue}px`,

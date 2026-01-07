@@ -1,4 +1,3 @@
-import React, { useLayoutEffect, useRef, useState } from "react"
 import {
   computePosition,
   offset,
@@ -6,6 +5,8 @@ import {
   type Placement,
 } from "@floating-ui/dom"
 import { clsx } from "clsx"
+import React, { useLayoutEffect, useRef, useState } from "react"
+
 import { BrowserFrame } from "../browser-frame"
 
 interface DotButtonProps {
@@ -15,33 +16,30 @@ interface DotButtonProps {
   className?: string
 }
 
-const DotButton = ({
-  placement,
-  current,
-  onClick,
-  className,
-}: DotButtonProps) => (
-  <button
-    onClick={() => onClick(placement)}
-    className={clsx("p-4 transition hover:scale-125", className)}
-    aria-label={`Set placement to ${placement}`}
-  >
-    <div
-      className={clsx(
-        "w-4 h-4 rounded-full border-2",
-        current === placement
-          ? "bg-slate-800 border-slate-800 dark:bg-slate-200 dark:border-slate-200"
-          : "border-slate-400",
-      )}
-    />
-  </button>
-)
+function DotButton({ placement, current, onClick, className }: DotButtonProps) {
+  return (
+    <button
+      onClick={() => onClick(placement)}
+      className={clsx("p-4 transition hover:scale-125", className)}
+      aria-label={`Set placement to ${placement}`}
+    >
+      <div
+        className={clsx(
+          "w-4 h-4 rounded-full border-2",
+          current === placement
+            ? "bg-slate-800 border-slate-800 dark:bg-slate-200 dark:border-slate-200"
+            : "border-slate-400",
+        )}
+      />
+    </button>
+  )
+}
 
-export const PlacementDemoFUI = ({
+export function PlacementDemoFUI({
   offsetValue = 5,
 }: {
   offsetValue?: number
-} = {}) => {
+} = {}) {
   const [placement, setPlacement] = useState<Placement>("top")
   const referenceRef = useRef<HTMLButtonElement>(null)
   const floatingRef = useRef<HTMLDivElement>(null)
@@ -53,7 +51,7 @@ export const PlacementDemoFUI = ({
     if (!reference || !floating) return
 
     return autoUpdate(reference, floating, () => {
-      computePosition(reference, floating, {
+      void computePosition(reference, floating, {
         placement,
         middleware: [offset(offsetValue)],
       }).then(({ x, y }) => {

@@ -1,4 +1,5 @@
 import { useId, useInsertionEffect } from "react"
+
 import { BrowserFrame } from "../browser-frame"
 
 declare module "react" {
@@ -8,13 +9,13 @@ declare module "react" {
   }
 }
 
-export const SizeDemoCSS = ({
+export function SizeDemoCSS({
   offsetValue = 5,
   sizePaddingValue = 8,
 }: {
   offsetValue?: number
   sizePaddingValue?: number
-}) => {
+}) {
   const id = useId()
   const viewTimelineName = `--timeline-${id}`
   const anchorName = `--anchor-${id}`

@@ -1,14 +1,15 @@
-import React, { useLayoutEffect, useRef, useState } from "react"
 import { computePosition, offset, size, autoUpdate } from "@floating-ui/dom"
+import React, { useLayoutEffect, useRef, useState } from "react"
+
 import { BrowserFrame } from "../browser-frame"
 
-export const SizeDemoFUI = ({
+export function SizeDemoFUI({
   offsetValue = 5,
   sizePaddingValue = 8,
 }: {
   offsetValue?: number
   sizePaddingValue?: number
-}) => {
+}) {
   const referenceRef = useRef<HTMLButtonElement>(null)
   const floatingRef = useRef<HTMLDivElement>(null)
   const [isPositioned, setIsPositioned] = useState(false)
@@ -19,7 +20,7 @@ export const SizeDemoFUI = ({
     if (!reference || !floating) return
 
     return autoUpdate(reference, floating, () => {
-      computePosition(reference, floating, {
+      void computePosition(reference, floating, {
         placement: "bottom",
         middleware: [
           offset(offsetValue),

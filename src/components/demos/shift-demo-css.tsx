@@ -1,8 +1,9 @@
 import clsx from "clsx"
 import { useId, useRef } from "react"
+
 import { BrowserFrame } from "../browser-frame"
 
-export const ShiftDemoCSS = ({
+export function ShiftDemoCSS({
   debug = false,
   offsetValue = 5,
   shiftPaddingValue = 5,
@@ -10,7 +11,7 @@ export const ShiftDemoCSS = ({
   debug?: boolean
   offsetValue?: number
   shiftPaddingValue?: number
-} = {}) => {
+} = {}) {
   const boundaryRef = useRef<HTMLDivElement>(null)
   const id = useId()
   const anchorName = `--anchor-${id}`

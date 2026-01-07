@@ -1,9 +1,10 @@
-import React, { useLayoutEffect, useRef, useState } from "react"
 import { computePosition, offset, flip, autoUpdate } from "@floating-ui/dom"
-import { BrowserFrame } from "../browser-frame"
 import { clsx } from "clsx"
+import React, { useLayoutEffect, useRef, useState } from "react"
 
-export const FlipDemoFUI = ({ offsetValue = 5 }: { offsetValue?: number }) => {
+import { BrowserFrame } from "../browser-frame"
+
+export function FlipDemoFUI({ offsetValue = 5 }: { offsetValue?: number }) {
   const referenceRef = useRef<HTMLButtonElement>(null)
   const floatingRef = useRef<HTMLDivElement>(null)
   const [isPositioned, setIsPositioned] = useState(false)
@@ -14,7 +15,7 @@ export const FlipDemoFUI = ({ offsetValue = 5 }: { offsetValue?: number }) => {
     if (!reference || !floating) return
 
     return autoUpdate(reference, floating, () => {
-      computePosition(reference, floating, {
+      void computePosition(reference, floating, {
         placement: "top",
         middleware: [offset(offsetValue), flip()],
       }).then(({ x, y }) => {

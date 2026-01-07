@@ -1,13 +1,14 @@
-import React, { useLayoutEffect, useRef, useState } from "react"
 import {
   computePosition,
   offset,
   shift,
   type VirtualElement,
 } from "@floating-ui/dom"
+import React, { useRef, useState } from "react"
+
 import { BrowserFrame } from "../browser-frame"
 
-export const VirtualDemoFUI = () => {
+export function VirtualDemoFUI() {
   const floatingRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -51,7 +52,7 @@ export const VirtualDemoFUI = () => {
         contextElement: contextEl,
       }
 
-      computePosition(virtualElement, floating, {
+      void computePosition(virtualElement, floating, {
         placement: "bottom-start",
         middleware: [offset(10), shift({ padding: 5 })],
       }).then(({ x: floatingX, y: floatingY }) => {
