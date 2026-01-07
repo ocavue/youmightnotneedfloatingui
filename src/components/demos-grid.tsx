@@ -1,16 +1,16 @@
-import React from "react";
-import { ArrowDemoCSS } from "./demos/arrow-demo-css";
-import { ArrowDemoFUI } from "./demos/arrow-demo-fui";
-import { FlipDemoCSS } from "./demos/flip-demo-css";
-import { FlipDemoFUI } from "./demos/flip-demo-fui";
-import { PlacementDemoCSS } from "./demos/placement-demo-css";
-import { PlacementDemoFUI } from "./demos/placement-demo-fui";
-import { ShiftDemoCSS } from "./demos/shift-demo-css";
-import { ShiftDemoFUI } from "./demos/shift-demo-fui";
-import { SizeDemoCSS } from "./demos/size-demo-css";
-import { SizeDemoFUI } from "./demos/size-demo-fui";
-import { VirtualDemoCSS } from "./demos/virtual-demo-css";
-import { VirtualDemoFUI } from "./demos/virtual-demo-fui";
+import React from "react"
+import { ArrowDemoCSS } from "./demos/arrow-demo-css"
+import { ArrowDemoFUI } from "./demos/arrow-demo-fui"
+import { FlipDemoCSS } from "./demos/flip-demo-css"
+import { FlipDemoFUI } from "./demos/flip-demo-fui"
+import { PlacementDemoCSS } from "./demos/placement-demo-css"
+import { PlacementDemoFUI } from "./demos/placement-demo-fui"
+import { ShiftDemoCSS } from "./demos/shift-demo-css"
+import { ShiftDemoFUI } from "./demos/shift-demo-fui"
+import { SizeDemoCSS } from "./demos/size-demo-css"
+import { SizeDemoFUI } from "./demos/size-demo-fui"
+import { VirtualDemoCSS } from "./demos/virtual-demo-css"
+import { VirtualDemoFUI } from "./demos/virtual-demo-fui"
 
 const ChromeCanaryWarning = () => {
   return (
@@ -24,18 +24,18 @@ const ChromeCanaryWarning = () => {
         Chrome Canary
       </a>
     </span>
-  );
-};
+  )
+}
 
 function DemoPanel(props: {
-  title: string;
-  description: string;
-  type: "Floating UI" | "CSS";
-  sourceUrl: string;
-  warning?: string | React.ReactNode;
-  children: React.ReactNode;
+  title: string
+  description: string
+  type: "Floating UI" | "CSS"
+  sourceUrl: string
+  warning?: string | React.ReactNode
+  children: React.ReactNode
 }) {
-  const { title, description, type, sourceUrl, warning, children } = props;
+  const { title, description, type, sourceUrl, warning, children } = props
 
   return (
     <section
@@ -78,7 +78,7 @@ function DemoPanel(props: {
 
       <div>{children}</div>
     </section>
-  );
+  )
 }
 
 export const DemosGrid = () => {
@@ -215,5 +215,5 @@ export const DemosGrid = () => {
         <VirtualDemoCSS />
       </DemoPanel>
     </div>
-  );
-};
+  )
+}

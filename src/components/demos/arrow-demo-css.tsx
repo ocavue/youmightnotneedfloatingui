@@ -1,11 +1,11 @@
-import clsx from "clsx";
-import { useId, useRef } from "react";
-import { BrowserFrame } from "../browser-frame";
+import clsx from "clsx"
+import { useId, useRef } from "react"
+import { BrowserFrame } from "../browser-frame"
 
 declare module "react" {
   interface CSSProperties {
-    "--d"?: string;
-    "--s"?: string;
+    "--d"?: string
+    "--s"?: string
   }
 }
 
@@ -15,15 +15,15 @@ export const ArrowDemoCSS = ({
   shiftPaddingValue = 5,
   arrowPaddingValue = 5,
 }: {
-  debug?: boolean;
-  offsetValue?: number;
-  shiftPaddingValue?: number;
-  arrowPaddingValue?: number;
+  debug?: boolean
+  offsetValue?: number
+  shiftPaddingValue?: number
+  arrowPaddingValue?: number
 }) => {
-  const boundaryRef = useRef<HTMLDivElement>(null);
-  const id = useId();
-  const anchorStickyName = `--anchor`;
-  const anchorTooltipName = `--tooltip`;
+  const boundaryRef = useRef<HTMLDivElement>(null)
+  const id = useId()
+  const anchorStickyName = `--anchor`
+  const anchorTooltipName = `--tooltip`
 
   return (
     <BrowserFrame
@@ -46,7 +46,7 @@ export const ArrowDemoCSS = ({
           id="tooltip"
           className={clsx(
             "absolute z-20 w-20 h-40 bg-cyan-500 text-white rounded shadow-lg text-sm font-bold flex items-center justify-center text-center leading-none",
-            debug ? "before:bg-amber-500" : "before:bg-inherit"
+            debug ? "before:bg-amber-500" : "before:bg-inherit",
           )}
           style={{
             "--d": "0.6em" /* distance between anchor and tooltip */,
@@ -87,5 +87,5 @@ export const ArrowDemoCSS = ({
         </div>
       </div>
     </BrowserFrame>
-  );
-};
+  )
+}

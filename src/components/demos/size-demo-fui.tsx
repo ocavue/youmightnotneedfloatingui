@@ -1,22 +1,22 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
-import { computePosition, offset, size, autoUpdate } from "@floating-ui/dom";
-import { BrowserFrame } from "../browser-frame";
+import React, { useLayoutEffect, useRef, useState } from "react"
+import { computePosition, offset, size, autoUpdate } from "@floating-ui/dom"
+import { BrowserFrame } from "../browser-frame"
 
 export const SizeDemoFUI = ({
   offsetValue = 5,
   sizePaddingValue = 8,
 }: {
-  offsetValue?: number;
-  sizePaddingValue?: number;
+  offsetValue?: number
+  sizePaddingValue?: number
 }) => {
-  const referenceRef = useRef<HTMLButtonElement>(null);
-  const floatingRef = useRef<HTMLDivElement>(null);
-  const [isPositioned, setIsPositioned] = useState(false);
+  const referenceRef = useRef<HTMLButtonElement>(null)
+  const floatingRef = useRef<HTMLDivElement>(null)
+  const [isPositioned, setIsPositioned] = useState(false)
 
   useLayoutEffect(() => {
-    const reference = referenceRef.current;
-    const floating = floatingRef.current;
-    if (!reference || !floating) return;
+    const reference = referenceRef.current
+    const floating = floatingRef.current
+    if (!reference || !floating) return
 
     return autoUpdate(reference, floating, () => {
       computePosition(reference, floating, {
@@ -27,21 +27,21 @@ export const SizeDemoFUI = ({
             padding: sizePaddingValue,
             rootBoundary: "document",
             apply({ availableHeight, elements }) {
-              const nextMaxHeight = Math.max(0, availableHeight);
+              const nextMaxHeight = Math.max(0, availableHeight)
               Object.assign(elements.floating.style, {
                 maxHeight: `${nextMaxHeight}px`,
-              });
+              })
             },
           }),
         ],
       }).then(({ x, y }) => {
         Object.assign(floating.style, {
           transform: `translate(${x}px, ${y}px)`,
-        });
-        setIsPositioned(true);
-      });
-    });
-  }, []);
+        })
+        setIsPositioned(true)
+      })
+    })
+  }, [])
 
   return (
     <BrowserFrame
@@ -79,5 +79,5 @@ export const SizeDemoFUI = ({
         </div>
       </div>
     </BrowserFrame>
-  );
-};
+  )
+}

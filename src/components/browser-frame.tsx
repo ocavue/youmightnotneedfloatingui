@@ -1,14 +1,14 @@
-import React, { useLayoutEffect, useRef } from "react";
-import { clsx } from "clsx";
-import { mergeRefs } from "react-merge-refs";
+import React, { useLayoutEffect, useRef } from "react"
+import { clsx } from "clsx"
+import { mergeRefs } from "react-merge-refs"
 
 interface BrowserFrameProps {
-  children?: React.ReactNode;
-  scrollable?: "both" | "x" | "y" | "none";
-  className?: string;
-  label?: string;
-  boundaryRef?: React.Ref<HTMLDivElement>;
-  boundaryStyle?: React.CSSProperties;
+  children?: React.ReactNode
+  scrollable?: "both" | "x" | "y" | "none"
+  className?: string
+  label?: string
+  boundaryRef?: React.Ref<HTMLDivElement>
+  boundaryStyle?: React.CSSProperties
 }
 
 export const BrowserFrame: React.FC<BrowserFrameProps> = ({
@@ -19,28 +19,27 @@ export const BrowserFrame: React.FC<BrowserFrameProps> = ({
   boundaryRef,
   boundaryStyle,
 }) => {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
+    const container = scrollRef.current
+    if (!container) return
 
     if (scrollable === "y" || scrollable === "both") {
       container.scrollTop =
-        (container.scrollHeight - container.clientHeight) / 2;
+        (container.scrollHeight - container.clientHeight) / 2
     }
 
     if (scrollable === "x" || scrollable === "both") {
-      container.scrollLeft =
-        (container.scrollWidth - container.clientWidth) / 2;
+      container.scrollLeft = (container.scrollWidth - container.clientWidth) / 2
     }
-  }, [scrollable]);
+  }, [scrollable])
 
   return (
     <div
       className={clsx(
         "flex flex-col border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl bg-white dark:bg-slate-950 overflow-hidden",
-        className
+        className,
       )}
     >
       {/* Browser Header */}
@@ -69,12 +68,12 @@ export const BrowserFrame: React.FC<BrowserFrameProps> = ({
           scrollable === "none" && "overflow-hidden",
           scrollable === "both" && "overflow-auto",
           scrollable === "x" && "overflow-x-auto overflow-y-hidden",
-          scrollable === "y" && "overflow-y-auto overflow-x-hidden"
+          scrollable === "y" && "overflow-y-auto overflow-x-hidden",
         )}
         style={boundaryStyle}
       >
         {children}
       </div>
     </div>
-  );
-};
+  )
+}

@@ -1,19 +1,19 @@
-import clsx from "clsx";
-import { useId, useRef } from "react";
-import { BrowserFrame } from "../browser-frame";
+import clsx from "clsx"
+import { useId, useRef } from "react"
+import { BrowserFrame } from "../browser-frame"
 
 export const ShiftDemoCSS = ({
   debug = false,
   offsetValue = 5,
   shiftPaddingValue = 5,
 }: {
-  debug?: boolean;
-  offsetValue?: number;
-  shiftPaddingValue?: number;
+  debug?: boolean
+  offsetValue?: number
+  shiftPaddingValue?: number
 } = {}) => {
-  const boundaryRef = useRef<HTMLDivElement>(null);
-  const id = useId();
-  const anchorName = `--anchor-${id}`;
+  const boundaryRef = useRef<HTMLDivElement>(null)
+  const id = useId()
+  const anchorName = `--anchor-${id}`
 
   return (
     <BrowserFrame
@@ -31,7 +31,7 @@ export const ShiftDemoCSS = ({
         <div
           className={clsx(
             "sticky h-40 pointer-events-none",
-            debug ? "-ml-4 w-4 bg-amber-500" : "-ml-px w-px opacity-0"
+            debug ? "-ml-4 w-4 bg-amber-500" : "-ml-px w-px opacity-0",
           )}
           style={{
             top: shiftPaddingValue,
@@ -52,5 +52,5 @@ export const ShiftDemoCSS = ({
         </div>
       </div>
     </BrowserFrame>
-  );
-};
+  )
+}

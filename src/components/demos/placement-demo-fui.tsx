@@ -1,18 +1,18 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react"
 import {
   computePosition,
   offset,
   autoUpdate,
   type Placement,
-} from "@floating-ui/dom";
-import { clsx } from "clsx";
-import { BrowserFrame } from "../browser-frame";
+} from "@floating-ui/dom"
+import { clsx } from "clsx"
+import { BrowserFrame } from "../browser-frame"
 
 interface DotButtonProps {
-  placement: Placement;
-  current: Placement;
-  onClick: (placement: Placement) => void;
-  className?: string;
+  placement: Placement
+  current: Placement
+  onClick: (placement: Placement) => void
+  className?: string
 }
 
 const DotButton = ({
@@ -31,26 +31,26 @@ const DotButton = ({
         "w-4 h-4 rounded-full border-2",
         current === placement
           ? "bg-slate-800 border-slate-800 dark:bg-slate-200 dark:border-slate-200"
-          : "border-slate-400"
+          : "border-slate-400",
       )}
     />
   </button>
-);
+)
 
 export const PlacementDemoFUI = ({
   offsetValue = 5,
 }: {
-  offsetValue?: number;
+  offsetValue?: number
 } = {}) => {
-  const [placement, setPlacement] = useState<Placement>("top");
-  const referenceRef = useRef<HTMLButtonElement>(null);
-  const floatingRef = useRef<HTMLDivElement>(null);
-  const [isPositioned, setIsPositioned] = useState(false);
+  const [placement, setPlacement] = useState<Placement>("top")
+  const referenceRef = useRef<HTMLButtonElement>(null)
+  const floatingRef = useRef<HTMLDivElement>(null)
+  const [isPositioned, setIsPositioned] = useState(false)
 
   useLayoutEffect(() => {
-    const reference = referenceRef.current;
-    const floating = floatingRef.current;
-    if (!reference || !floating) return;
+    const reference = referenceRef.current
+    const floating = floatingRef.current
+    if (!reference || !floating) return
 
     return autoUpdate(reference, floating, () => {
       computePosition(reference, floating, {
@@ -59,11 +59,11 @@ export const PlacementDemoFUI = ({
       }).then(({ x, y }) => {
         Object.assign(floating.style, {
           transform: `translate(${x}px, ${y}px)`,
-        });
-        setIsPositioned(true);
-      });
-    });
-  }, [placement, offsetValue]);
+        })
+        setIsPositioned(true)
+      })
+    })
+  }, [placement, offsetValue])
 
   return (
     <BrowserFrame
@@ -161,8 +161,8 @@ export const PlacementDemoFUI = ({
           className={clsx(
             "absolute top-0 left-0 z-20 pointer-events-none will-change-transform",
             ["top-start", "top-end", "bottom-start", "bottom-end"].includes(
-              placement
-            ) && "w-36"
+              placement,
+            ) && "w-36",
           )}
           style={{
             opacity: isPositioned ? 1 : 0,
@@ -173,8 +173,8 @@ export const PlacementDemoFUI = ({
             className={clsx(
               "bg-rose-500 text-white px-3 py-1.5 rounded shadow-lg text-sm font-bold whitespace-nowrap text-center",
               ["top-start", "top-end", "bottom-start", "bottom-end"].includes(
-                placement
-              ) && "w-36"
+                placement,
+              ) && "w-36",
             )}
             style={{
               transform: isPositioned ? "scale(1)" : "scale(0.9)",
@@ -186,5 +186,5 @@ export const PlacementDemoFUI = ({
         </div>
       </div>
     </BrowserFrame>
-  );
-};
+  )
+}

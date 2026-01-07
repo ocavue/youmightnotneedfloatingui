@@ -1,34 +1,34 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react"
 import {
   computePosition,
   offset,
   shift,
   type VirtualElement,
-} from "@floating-ui/dom";
-import { BrowserFrame } from "../browser-frame";
+} from "@floating-ui/dom"
+import { BrowserFrame } from "../browser-frame"
 
 export const VirtualDemoFUI = () => {
-  const floatingRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const latestPointRef = useRef<{ x: number; y: number } | null>(null);
-  const frameRef = useRef<number | null>(null);
+  const floatingRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [isOpen, setIsOpen] = useState(false)
+  const latestPointRef = useRef<{ x: number; y: number } | null>(null)
+  const frameRef = useRef<number | null>(null)
 
   const handleMouseMove = ({
     clientX,
     clientY,
   }: React.MouseEvent | React.PointerEvent) => {
-    latestPointRef.current = { x: clientX, y: clientY };
+    latestPointRef.current = { x: clientX, y: clientY }
 
-    if (frameRef.current != null) return;
+    if (frameRef.current != null) return
 
     frameRef.current = requestAnimationFrame(() => {
-      frameRef.current = null;
+      frameRef.current = null
 
-      const floating = floatingRef.current;
-      const contextEl = containerRef.current;
-      const point = latestPointRef.current;
-      if (!floating || !contextEl || !point) return;
+      const floating = floatingRef.current
+      const contextEl = containerRef.current
+      const point = latestPointRef.current
+      if (!floating || !contextEl || !point) return
 
       // Floating UI expects viewport-based rects. `contextElement` ensures the
       // correct offsetParent/clipping behavior for an in-frame tooltip.
@@ -43,13 +43,13 @@ export const VirtualDemoFUI = () => {
             top: point.y,
             right: point.x,
             bottom: point.y,
-          };
+          }
         },
         getClientRects() {
-          return [];
+          return []
         },
         contextElement: contextEl,
-      };
+      }
 
       computePosition(virtualElement, floating, {
         placement: "bottom-start",
@@ -57,10 +57,10 @@ export const VirtualDemoFUI = () => {
       }).then(({ x: floatingX, y: floatingY }) => {
         Object.assign(floating.style, {
           transform: `translate(${floatingX}px, ${floatingY}px)`,
-        });
-      });
-    });
-  };
+        })
+      })
+    })
+  }
 
   return (
     <BrowserFrame
@@ -99,5 +99,5 @@ export const VirtualDemoFUI = () => {
         </div>
       </div>
     </BrowserFrame>
-  );
-};
+  )
+}

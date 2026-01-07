@@ -1,50 +1,50 @@
-import React, { useId, useLayoutEffect, useRef, useState } from "react";
+import React, { useId, useLayoutEffect, useRef, useState } from "react"
 import {
   computePosition,
   offset,
   shift,
   type VirtualElement,
-} from "@floating-ui/dom";
-import { BrowserFrame } from "../browser-frame";
-import clsx from "clsx";
+} from "@floating-ui/dom"
+import { BrowserFrame } from "../browser-frame"
+import clsx from "clsx"
 
 export const VirtualDemoCSS = ({ debug = false }: { debug?: boolean }) => {
-  const floatingRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const anchorRef = useRef<HTMLDivElement>(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const latestPointRef = useRef<{ x: number; y: number } | null>(null);
-  const frameRef = useRef<number | null>(null);
-  const id = useId();
-  const anchorName = `--anchor-${id}`;
+  const floatingRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const anchorRef = useRef<HTMLDivElement>(null)
+  const [isOpen, setIsOpen] = useState(false)
+  const latestPointRef = useRef<{ x: number; y: number } | null>(null)
+  const frameRef = useRef<number | null>(null)
+  const id = useId()
+  const anchorName = `--anchor-${id}`
 
   const handleMouseMove = ({
     clientX,
     clientY,
   }: React.MouseEvent | React.PointerEvent) => {
-    latestPointRef.current = { x: clientX, y: clientY };
+    latestPointRef.current = { x: clientX, y: clientY }
 
-    if (frameRef.current != null) return;
+    if (frameRef.current != null) return
 
     frameRef.current = requestAnimationFrame(() => {
-      frameRef.current = null;
+      frameRef.current = null
 
-      const floating = floatingRef.current;
-      const point = latestPointRef.current;
-      const container = containerRef.current;
-      const anchor = anchorRef.current;
-      if (!floating || !point || !anchor || !container) return;
+      const floating = floatingRef.current
+      const point = latestPointRef.current
+      const container = containerRef.current
+      const anchor = anchorRef.current
+      if (!floating || !point || !anchor || !container) return
 
-      const containerRect = container.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect()
 
-      const x = point.x - containerRect.left;
-      const y = point.y - containerRect.top;
+      const x = point.x - containerRect.left
+      const y = point.y - containerRect.top
 
       Object.assign(anchor.style, {
         transform: `translate(${x}px, ${y}px)`,
-      });
-    });
-  };
+      })
+    })
+  }
 
   return (
     <BrowserFrame
@@ -66,7 +66,7 @@ export const VirtualDemoCSS = ({ debug = false }: { debug?: boolean }) => {
           ref={anchorRef}
           className={clsx(
             "absolute top-0 left-0 z-10 w-2 h-2 transform",
-            debug ? "bg-amber-500" : ""
+            debug ? "bg-amber-500" : "",
           )}
           style={{
             anchorName,
@@ -93,5 +93,5 @@ export const VirtualDemoCSS = ({ debug = false }: { debug?: boolean }) => {
         </div>
       </div>
     </BrowserFrame>
-  );
-};
+  )
+}

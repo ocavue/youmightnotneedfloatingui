@@ -1,17 +1,17 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
-import { computePosition, offset, flip, autoUpdate } from "@floating-ui/dom";
-import { BrowserFrame } from "../browser-frame";
-import { clsx } from "clsx";
+import React, { useLayoutEffect, useRef, useState } from "react"
+import { computePosition, offset, flip, autoUpdate } from "@floating-ui/dom"
+import { BrowserFrame } from "../browser-frame"
+import { clsx } from "clsx"
 
 export const FlipDemoFUI = ({ offsetValue = 5 }: { offsetValue?: number }) => {
-  const referenceRef = useRef<HTMLButtonElement>(null);
-  const floatingRef = useRef<HTMLDivElement>(null);
-  const [isPositioned, setIsPositioned] = useState(false);
+  const referenceRef = useRef<HTMLButtonElement>(null)
+  const floatingRef = useRef<HTMLDivElement>(null)
+  const [isPositioned, setIsPositioned] = useState(false)
 
   useLayoutEffect(() => {
-    const reference = referenceRef.current;
-    const floating = floatingRef.current;
-    if (!reference || !floating) return;
+    const reference = referenceRef.current
+    const floating = floatingRef.current
+    if (!reference || !floating) return
 
     return autoUpdate(reference, floating, () => {
       computePosition(reference, floating, {
@@ -20,11 +20,11 @@ export const FlipDemoFUI = ({ offsetValue = 5 }: { offsetValue?: number }) => {
       }).then(({ x, y }) => {
         Object.assign(floating.style, {
           transform: `translate(${x}px, ${y}px)`,
-        });
-        setIsPositioned(true);
-      });
-    });
-  }, [offsetValue]);
+        })
+        setIsPositioned(true)
+      })
+    })
+  }, [offsetValue])
 
   return (
     <BrowserFrame
@@ -45,7 +45,7 @@ export const FlipDemoFUI = ({ offsetValue = 5 }: { offsetValue?: number }) => {
           className={clsx(
             "absolute top-0 left-0 z-20 pointer-events-none will-change-transform",
             "transition-opacity duration-150 ease-out",
-            isPositioned ? "opacity-100" : "opacity-0"
+            isPositioned ? "opacity-100" : "opacity-0",
           )}
         >
           <div
@@ -60,5 +60,5 @@ export const FlipDemoFUI = ({ offsetValue = 5 }: { offsetValue?: number }) => {
         </div>
       </div>
     </BrowserFrame>
-  );
-};
+  )
+}

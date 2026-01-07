@@ -4,29 +4,29 @@ import {
   computePosition,
   offset,
   shift,
-} from "@floating-ui/dom";
-import { useLayoutEffect, useRef, useState } from "react";
-import { BrowserFrame } from "../browser-frame";
+} from "@floating-ui/dom"
+import { useLayoutEffect, useRef, useState } from "react"
+import { BrowserFrame } from "../browser-frame"
 
 export const ArrowDemoFUI = ({
   offsetValue = 16,
   shiftPaddingValue = 5,
   arrowPaddingValue = 5,
 }: {
-  offsetValue?: number;
-  shiftPaddingValue?: number;
-  arrowPaddingValue?: number;
+  offsetValue?: number
+  shiftPaddingValue?: number
+  arrowPaddingValue?: number
 }) => {
-  const referenceRef = useRef<HTMLButtonElement>(null);
-  const floatingRef = useRef<HTMLDivElement>(null);
-  const arrowRef = useRef<HTMLDivElement>(null);
-  const [isPositioned, setIsPositioned] = useState(false);
+  const referenceRef = useRef<HTMLButtonElement>(null)
+  const floatingRef = useRef<HTMLDivElement>(null)
+  const arrowRef = useRef<HTMLDivElement>(null)
+  const [isPositioned, setIsPositioned] = useState(false)
 
   useLayoutEffect(() => {
-    const reference = referenceRef.current;
-    const floating = floatingRef.current;
-    const arrowEl = arrowRef.current;
-    if (!reference || !floating || !arrowEl) return;
+    const reference = referenceRef.current
+    const floating = floatingRef.current
+    const arrowEl = arrowRef.current
+    if (!reference || !floating || !arrowEl) return
 
     return autoUpdate(reference, floating, () => {
       computePosition(reference, floating, {
@@ -39,19 +39,19 @@ export const ArrowDemoFUI = ({
       }).then(({ x, y, placement, middlewareData }) => {
         Object.assign(floating.style, {
           transform: `translate(${x}px, ${y}px)`,
-        });
-        setIsPositioned(true);
+        })
+        setIsPositioned(true)
 
         if (middlewareData.arrow) {
-          const { x: arrowX, y: arrowY, centerOffset } = middlewareData.arrow;
+          const { x: arrowX, y: arrowY, centerOffset } = middlewareData.arrow
           const staticSide = {
             top: "bottom",
             right: "left",
             bottom: "top",
             left: "right",
-          }[placement.split("-")[0]]!;
+          }[placement.split("-")[0]]!
 
-          arrowEl.dataset.hidden = centerOffset === 0 ? "false" : "true";
+          arrowEl.dataset.hidden = centerOffset === 0 ? "false" : "true"
 
           Object.assign(arrowEl.style, {
             left: arrowX != null ? `${arrowX}px` : "",
@@ -59,11 +59,11 @@ export const ArrowDemoFUI = ({
             right: "",
             bottom: "",
             [staticSide]: "-4px",
-          });
+          })
         }
-      });
-    });
-  }, []);
+      })
+    })
+  }, [])
 
   return (
     <BrowserFrame
@@ -103,5 +103,5 @@ export const ArrowDemoFUI = ({
         </div>
       </div>
     </BrowserFrame>
-  );
-};
+  )
+}

@@ -1,23 +1,23 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
-import { computePosition, offset, shift, autoUpdate } from "@floating-ui/dom";
-import { BrowserFrame } from "../browser-frame";
+import React, { useLayoutEffect, useRef, useState } from "react"
+import { computePosition, offset, shift, autoUpdate } from "@floating-ui/dom"
+import { BrowserFrame } from "../browser-frame"
 
 export const ShiftDemoFUI = ({
   offsetValue = 5,
   shiftPaddingValue = 5,
 }: {
-  offsetValue?: number;
-  shiftPaddingValue?: number;
+  offsetValue?: number
+  shiftPaddingValue?: number
 } = {}) => {
-  const referenceRef = useRef<HTMLButtonElement>(null);
-  const floatingRef = useRef<HTMLDivElement>(null);
-  const boundaryRef = useRef<HTMLDivElement>(null);
-  const [isPositioned, setIsPositioned] = useState(false);
+  const referenceRef = useRef<HTMLButtonElement>(null)
+  const floatingRef = useRef<HTMLDivElement>(null)
+  const boundaryRef = useRef<HTMLDivElement>(null)
+  const [isPositioned, setIsPositioned] = useState(false)
 
   useLayoutEffect(() => {
-    const reference = referenceRef.current;
-    const floating = floatingRef.current;
-    if (!reference || !floating) return;
+    const reference = referenceRef.current
+    const floating = floatingRef.current
+    if (!reference || !floating) return
 
     return autoUpdate(reference, floating, () => {
       computePosition(reference, floating, {
@@ -32,11 +32,11 @@ export const ShiftDemoFUI = ({
       }).then(({ x, y }) => {
         Object.assign(floating.style, {
           transform: `translate(${x}px, ${y}px)`,
-        });
-        setIsPositioned(true);
-      });
-    });
-  }, []);
+        })
+        setIsPositioned(true)
+      })
+    })
+  }, [])
 
   return (
     <BrowserFrame
@@ -71,5 +71,5 @@ export const ShiftDemoFUI = ({
         </div>
       </div>
     </BrowserFrame>
-  );
-};
+  )
+}

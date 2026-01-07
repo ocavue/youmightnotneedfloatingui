@@ -1,16 +1,16 @@
-import React, { useId, useLayoutEffect, useRef, useState } from "react";
-import { computePosition, offset, flip, autoUpdate } from "@floating-ui/dom";
-import { BrowserFrame } from "../browser-frame";
-import { clsx } from "clsx";
+import React, { useId, useLayoutEffect, useRef, useState } from "react"
+import { computePosition, offset, flip, autoUpdate } from "@floating-ui/dom"
+import { BrowserFrame } from "../browser-frame"
+import { clsx } from "clsx"
 
-// Works on Chrome 143.0.7499.170 
-// Doesn't work on Chrome Canary 145.0.7615.0 
+// Works on Chrome 143.0.7499.170
+// Doesn't work on Chrome Canary 145.0.7615.0
 // Doesn't work on Safari Technology Preview Release 234 (WebKit 20624.1.6.19.3)
 export const FlipDemoCSS = ({ offsetValue = 5 }: { offsetValue?: number }) => {
-  const referenceRef = useRef<HTMLButtonElement>(null);
-  const floatingRef = useRef<HTMLDivElement>(null);
-  const id = useId();
-  const anchorName = `--anchor-${id}`;
+  const referenceRef = useRef<HTMLButtonElement>(null)
+  const floatingRef = useRef<HTMLDivElement>(null)
+  const id = useId()
+  const anchorName = `--anchor-${id}`
 
   return (
     <BrowserFrame
@@ -33,7 +33,7 @@ export const FlipDemoCSS = ({ offsetValue = 5 }: { offsetValue?: number }) => {
           ref={floatingRef}
           className={clsx(
             "absolute z-20 pointer-events-none  ",
-            "transition-opacity duration-150 ease-out"
+            "transition-opacity duration-150 ease-out",
           )}
           style={{
             positionAnchor: anchorName,
@@ -54,5 +54,5 @@ export const FlipDemoCSS = ({ offsetValue = 5 }: { offsetValue?: number }) => {
         </div>
       </div>
     </BrowserFrame>
-  );
-};
+  )
+}
