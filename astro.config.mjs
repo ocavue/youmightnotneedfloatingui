@@ -1,8 +1,8 @@
 // @ts-check
-import { defineConfig, fontProviders } from "astro/config";
 
-import react from "@astrojs/react";
-import tailwindcss from "@tailwindcss/vite";
+import react from "@astrojs/react"
+import tailwindcss from "@tailwindcss/vite"
+import { defineConfig, fontProviders } from "astro/config"
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,4 +19,4 @@ export default defineConfig({
       },
     ],
   },
-});
+})
