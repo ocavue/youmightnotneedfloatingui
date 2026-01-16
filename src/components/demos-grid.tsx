@@ -13,19 +13,8 @@ import { SizeDemoFUI } from "./demos/size-demo-fui"
 import { VirtualDemoCSS } from "./demos/virtual-demo-css"
 import { VirtualDemoFUI } from "./demos/virtual-demo-fui"
 
-function ChromeCanaryWarning() {
-  return (
-    <span>
-      Require{" "}
-      <a
-        href="https://www.google.com/chrome/canary/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Chrome Canary
-      </a>
-    </span>
-  )
+function Chrome144Warning() {
+  return <span>Require Chrome v144 or higher.</span>
 }
 
 function DemoPanel(props: {
@@ -126,7 +115,7 @@ export function DemosGrid() {
         description="Shifts your floating element to keep it in view."
         type="CSS"
         sourceUrl="https://github.com/ocavue/youmightnotneedfloatingui/blob/master/src/components/demos/shift-demo-css.tsx"
-        warning=<ChromeCanaryWarning />
+        warning=<Chrome144Warning />
       >
         <ShiftDemoCSS />
       </DemoPanel>
@@ -174,7 +163,7 @@ export function DemosGrid() {
         description="Changes the size of your floating element to keep it in view."
         type="CSS"
         sourceUrl="https://github.com/ocavue/youmightnotneedfloatingui/blob/master/src/components/demos/size-demo-css.tsx"
-        warning=<ChromeCanaryWarning />
+        warning=<Chrome144Warning />
       >
         <SizeDemoCSS />
       </DemoPanel>
@@ -211,7 +200,7 @@ export function DemosGrid() {
         description="Anchor relative to any coordinates, such as your mouse cursor."
         type="CSS"
         sourceUrl="https://github.com/ocavue/youmightnotneedfloatingui/blob/master/src/components/demos/virtual-demo-css.tsx"
-        warning=<ChromeCanaryWarning />
+        warning=<Chrome144Warning />
       >
         <VirtualDemoCSS />
       </DemoPanel>
