@@ -1,6 +1,6 @@
 import type { Placement } from "@floating-ui/dom"
 import { clsx } from "clsx"
-import { useId, useRef, useState } from "react"
+import { useId, useState } from "react"
 
 import { BrowserFrame } from "../browser-frame"
 
@@ -36,8 +36,6 @@ export function PlacementDemoCSS({
   offsetValue?: number
 } = {}) {
   const [placement, setPlacement] = useState<Placement>("top")
-  const referenceRef = useRef<HTMLButtonElement>(null)
-  const floatingRef = useRef<HTMLDivElement>(null)
   const id = useId()
   const anchorName = `--anchor-${id}`
 
@@ -126,7 +124,6 @@ export function PlacementDemoCSS({
         </div>
 
         <button
-          ref={referenceRef}
           className="z-10 flex h-24 w-24 flex-none items-center justify-center border-2 border-dashed border-slate-900 bg-slate-50 p-2 text-sm font-bold dark:border-slate-100 dark:bg-slate-800"
           style={{
             anchorName: anchorName,
@@ -136,7 +133,6 @@ export function PlacementDemoCSS({
         </button>
 
         <div
-          ref={floatingRef}
           className={clsx(
             "pointer-events-none absolute z-20 will-change-transform",
             ["top-start", "top-end", "bottom-start", "bottom-end"].includes(

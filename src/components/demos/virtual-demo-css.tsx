@@ -4,7 +4,6 @@ import React, { useId, useRef, useState } from "react"
 import { BrowserFrame } from "../browser-frame"
 
 export function VirtualDemoCSS({ debug = false }: { debug?: boolean }) {
-  const floatingRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const anchorRef = useRef<HTMLDivElement>(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -24,11 +23,10 @@ export function VirtualDemoCSS({ debug = false }: { debug?: boolean }) {
     frameRef.current = requestAnimationFrame(() => {
       frameRef.current = null
 
-      const floating = floatingRef.current
       const point = latestPointRef.current
       const container = containerRef.current
       const anchor = anchorRef.current
-      if (!floating || !point || !anchor || !container) return
+      if (!point || !anchor || !container) return
 
       const containerRect = container.getBoundingClientRect()
 
@@ -69,7 +67,6 @@ export function VirtualDemoCSS({ debug = false }: { debug?: boolean }) {
         ></div>
 
         <div
-          ref={floatingRef}
           className="pointer-events-none absolute top-0 left-0 z-20"
           style={{
             positionAnchor: anchorName,

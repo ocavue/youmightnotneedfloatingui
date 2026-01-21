@@ -1,5 +1,5 @@
 import { clsx } from "clsx"
-import { useId, useRef } from "react"
+import { useId } from "react"
 
 import { BrowserFrame } from "../browser-frame"
 
@@ -7,8 +7,6 @@ import { BrowserFrame } from "../browser-frame"
 // Doesn't work on Chrome Canary 145.0.7615.0
 // Doesn't work on Safari Technology Preview Release 234 (WebKit 20624.1.6.19.3)
 export function FlipDemoCSS({ offsetValue = 5 }: { offsetValue?: number }) {
-  const referenceRef = useRef<HTMLButtonElement>(null)
-  const floatingRef = useRef<HTMLDivElement>(null)
   const id = useId()
   const anchorName = `--anchor-${id}`
 
@@ -20,7 +18,6 @@ export function FlipDemoCSS({ offsetValue = 5 }: { offsetValue?: number }) {
     >
       <div className="flex h-160 flex-col items-center justify-center">
         <button
-          ref={referenceRef}
           className="z-10 flex h-24 w-24 flex-none items-center justify-center border-2 border-dashed border-slate-900 bg-slate-50 p-2 text-sm font-bold dark:border-slate-100 dark:bg-slate-800"
           style={{
             anchorName,
@@ -30,7 +27,6 @@ export function FlipDemoCSS({ offsetValue = 5 }: { offsetValue?: number }) {
         </button>
 
         <div
-          ref={floatingRef}
           className={clsx(
             "pointer-events-none absolute z-20",
             "transition-opacity duration-150 ease-out",

@@ -1,0 +1,8 @@
+@keyframes keyframe-max-height {
+  from {
+    max-height: var(--size-max-height-from);
+  }
+  to {
+    max-height: var(--size-max-height-to);
+  }
+}

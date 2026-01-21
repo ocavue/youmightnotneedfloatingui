@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { useId, useRef } from "react"
+import { useId } from "react"
 
 import { BrowserFrame } from "../browser-frame"
 
@@ -16,18 +16,12 @@ export function ArrowDemoCSS({
 }: {
   debug?: boolean
   offsetValue?: number
-  // TODO: shiftPaddingValue is not used yet because the popover doesn't shift.
-  shiftPaddingValue?: number
-  // TODO: arrowPaddingValue is not used yet because the arrow doesn't move against the popover.
-  arrowPaddingValue?: number
 }) {
-  const boundaryRef = useRef<HTMLDivElement>(null)
   const id = useId()
   const anchorName = `--anchor-${id}`
 
   return (
     <BrowserFrame
-      boundaryRef={boundaryRef}
       label="Scroll the container"
       scrollable="y"
       className="relative h-80 bg-slate-100 dark:bg-slate-900"
