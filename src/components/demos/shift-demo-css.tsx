@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { useId, useRef } from "react"
+import { useId } from "react"
 
 import { BrowserFrame } from "../browser-frame"
 
@@ -12,13 +12,11 @@ export function ShiftDemoCSS({
   offsetValue?: number
   shiftPaddingValue?: number
 } = {}) {
-  const boundaryRef = useRef<HTMLDivElement>(null)
   const id = useId()
   const anchorName = `--anchor-${id}`
 
   return (
     <BrowserFrame
-      boundaryRef={boundaryRef}
       label="Scroll the container"
       scrollable="y"
       className="relative h-80 bg-slate-100 dark:bg-slate-900"
